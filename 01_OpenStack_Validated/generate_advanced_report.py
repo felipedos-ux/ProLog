@@ -20,6 +20,7 @@ DOCS_DIR = WORKSPACE / "docs"
 
 DATA_ORIGINAL = DATA_DIR / "OpenStack_data_original.csv"
 RESULTS_FILE = WORKSPACE / "results_metrics_detailed.txt"
+RESULTS_JSON = WORKSPACE / "results_metrics_detailed.json"
 TRAINING_CURVE = MODEL_DIR / "training_curve.json"
 
 REPORT_PATH = DOCS_DIR / "relatorio_avancado_openstack.html"
@@ -38,6 +39,49 @@ def fig_to_base64(fig):
     plt.close(fig)
     buf.seek(0)
     return base64.b64encode(buf.read()).decode('utf-8')
+
+
+def calculate_lead_time_metrics(results_df, session_data):
+    """Calcula métricas de lead time usando o erro real."""
+    detected_anomalies = results_df[
+        (results_df['label'] == 1) & 
+        (results_df['predicted'] == 1) &
+        (results_df['first_anomaly_step'] >= 0)
+    ].copy()
+    
+    if detected_anomalies.empty:
+        return pd.DataFrame()
+    
+    # Merge com dados da sessão para pegar informações do erro real
+    merged = pd.merge(detected_anomalies, session_data, on='test_id', how='left')
+    
+    # Calcular lead time temporal (em minutos)
+    # Precisamos converter timestamps
+    merged['first_error_timestamp'] = pd.to_datetime(merged['first_error_timestamp'])
+    merged['start_time'] = pd.to_datetime(merged['start_time'])
+    
+    # Lead time temporal = (timestamp detecção - timestamp erro real) / 60 segundos
+    # A detecção acontece em 'first_anomaly_step', precisamos estimar o timestamp
+    # Assumindo que os eventos são espaçados uniformemente (simplificação)
+    total_duration_sec = (merged['end_time'] - merged['start_time']).dt.total_seconds()
+    avg_time_per_event = total_duration_sec / merged['n_events']
+    
+    # Timestamp estimado da detecção
+    detected_timestamp_est = merged['start_time'] + pd.to_timedelta(merged['first_anomaly_step'] * avg_time_per_event, unit='s')
+    
+    # Lead time em minutos (positivo = antecipou, negativo = atrasou)
+    merged['lead_time_minutes'] = (detected_timestamp_est - merged['first_error_timestamp']).dt.total_seconds() / 60
+    
+    # Lead time em passos (quantos eventos antes do erro real)
+    # Precisamos encontrar a posição do erro real na sequência
+    merged['steps_before_error'] = merged['n_events'] - merged['n_events']  # Placeholder
+    
+    # Para calcular steps_before_error, precisamos da posição do erro na sequência
+    # Infelizmente não temos essa informação direta, então usamos uma aproximação:
+    # Se first_anomaly_step < (n_events / 2), consideramos que detectou cedo
+    merged['detection_progress_pct'] = (merged['first_anomaly_step'] / merged['n_events']) * 100
+    
+    return merged
 
 
 # ==========================================
@@ -59,9 +103,13 @@ def run_deep_analysis():
             pl.col("timestamp").min().alias("start_time"),
             pl.col("timestamp").max().alias("end_time"),
             pl.col("EventId").count().alias("log_count"),
-            pl.col("EventTemplate").last().alias("last_template"), # útil pra ver o erro em si
+            pl.col("EventTemplate").last().alias("last_template"),
             # Pega o primeiro timestamp onde anom_label = 1 (momento da falha real)
-            pl.col("timestamp").filter(pl.col("anom_label") == 1).first().alias("first_error_time")
+            pl.col("timestamp").filter(pl.col("anom_label") == 1).first().alias("first_error_time"),
+            # Pega o template do erro real
+            pl.col("EventTemplate").filter(pl.col("anom_label") == 1).first().alias("error_template"),
+            # Conta quantos logs até o erro real
+            pl.col("EventId").filter(pl.col("timestamp") <= pl.col("timestamp").filter(pl.col("anom_label") == 1).first()).count().alias("steps_to_error")
         ])
     ).to_pandas()
     
@@ -71,31 +119,52 @@ def run_deep_analysis():
     session_data['first_error_time'] = pd.to_datetime(session_data['first_error_time'])
     session_data['duration_sec'] = (session_data['end_time'] - session_data['start_time']).dt.total_seconds()
     
-    # 3. Carregar resultados do LogGPT (do .txt que escrevemos no detect_custom.py)
-    # Precisamos extrair o ID exato e o Step da detecção
+    # 3. Carregar resultados do LogGPT do JSON (mais confiável que .txt)
     detection_results = []
-    current_pattern = None
     
-    if RESULTS_FILE.exists():
-        with open(RESULTS_FILE, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            
-        for line in lines:
-            if "Example: ID" in line:
-                # Extrai: "   Example: ID 408 (Step 148)"
-                parts = line.split("ID ")[1].split(" (Step ")
-                tid = int(parts[0])
-                step = int(parts[1].replace(")", "").strip())
-                detection_results.append({'test_id': tid, 'detected_step': step})
+    if RESULTS_JSON.exists():
+        with open(RESULTS_JSON, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            detection_results = data.get('results', [])
                 
     det_df = pd.DataFrame(detection_results)
     
     # 4. Cruzar Dados (Sessão x Detecção)
     if not det_df.empty:
+        # Renomear first_anomaly_step para detected_step para compatibilidade
+        det_df['detected_step'] = det_df['first_anomaly_step']
         merged = pd.merge(session_data, det_df, on='test_id', how='left')
+        
+        # Calcular lead time em passos (quantos passos antes do erro real detectamos)
+        # Se detectou antes do erro, steps_before_error > 0
+        # Infelizmente não temos a posição exata do erro real na sequência, então usamos uma estimativa
+        # Assumimos que o erro está próximo do fim da sessão para sessões anômalas
+        anom_sessions = merged[merged['is_anomaly'] == 1].copy()
+        anom_sessions['estimated_error_position'] = (anom_sessions['log_count'] * 0.9).astype(int)  # Assumindo erro a 90% da sessão
+        merged = pd.merge(merged, anom_sessions[['test_id', 'estimated_error_position']], on='test_id', how='left')
+        
+        # Calcular steps_before_error
+        merged['steps_before_error'] = merged['estimated_error_position'] - merged['detected_step']
+        merged['steps_before_error'] = merged['steps_before_error'].fillna(0)
+        
+        # Calcular lead time temporal em minutos
+        # Primeiro estimar o timestamp da detecção
+        anom_sessions = merged[merged['is_anomaly'] == 1].copy()
+        anom_sessions['avg_time_per_event'] = anom_sessions['duration_sec'] / anom_sessions['log_count']
+        anom_sessions['detection_timestamp_est'] = anom_sessions['start_time'] + pd.to_timedelta(
+            anom_sessions['detected_step'] * anom_sessions['avg_time_per_event'], unit='s'
+        )
+        merged = pd.merge(merged, anom_sessions[['test_id', 'detection_timestamp_est']], on='test_id', how='left')
+        
+        # Lead time = (timestamp detecção - timestamp erro real) em minutos
+        merged['lead_time_minutes'] = (merged['detection_timestamp_est'] - merged['first_error_time']).dt.total_seconds() / 60
+        
     else:
         merged = session_data.copy()
         merged['detected_step'] = np.nan
+        merged['detected'] = False
+        merged['lead_time_minutes'] = np.nan
+        merged['steps_before_error'] = np.nan
         
     merged['detected'] = merged['detected_step'].notna()
     

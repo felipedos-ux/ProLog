@@ -121,6 +121,20 @@ def main():
     # Get ALL sessions (both normal and anomaly)
     all_sessions = prepare_session_strings(df)
     
+    # Extract error information for anomalous sessions
+    error_info = (
+        df.sort("timestamp")
+        .group_by("test_id")
+        .agg([
+            pl.col("anom_label").max().alias("is_anomaly"),
+            pl.col("EventTemplate").filter(pl.col("anom_label") == 1).first().alias("error_template"),
+            pl.col("EventTemplate").filter(pl.col("anom_label") == 1).first().alias("first_error_template"),
+            pl.col("timestamp").filter(pl.col("anom_label") == 1).first().alias("first_error_timestamp"),
+            pl.col("EventId").filter(pl.col("anom_label") == 1).first().alias("first_error_eventid")
+        ])
+    )
+    error_info_dict = {row["test_id"]: row for row in error_info.iter_rows(named=True)}
+    
     # Split normal IDs for test (same split as training used)
     normal_ids = df.filter(pl.col("anom_label") == 0)["test_id"].unique().to_list()
     anom_ids = df.filter(pl.col("anom_label") == 1)["test_id"].unique().to_list()
@@ -186,6 +200,13 @@ def main():
                 first_step = int(first_indices[i]) if is_anom_pred[i] else -1
                 n_events = event_templates[i].count(' ') + 1
                 
+                # Get error information from error_info_dict
+                err_info = error_info_dict.get(tid, {})
+                error_template = err_info.get('error_template', None)
+                first_error_template = err_info.get('first_error_template', None)
+                first_error_timestamp = err_info.get('first_error_timestamp', None)
+                first_error_eventid = err_info.get('first_error_eventid', None)
+                
                 log_desc = event_templates[i][:LOG_DESC_MAX_LEN]
                 log_hash = hashlib.md5(log_desc.encode()).hexdigest()[:8]
                 
@@ -197,6 +218,10 @@ def main():
                     'n_events': n_events,
                     'log_desc': log_desc,
                     'log_hash': log_hash,
+                    'error_template': error_template,  # Template do erro real
+                    'first_error_template': first_error_template,
+                    'first_error_timestamp': str(first_error_timestamp) if first_error_timestamp is not None else None,
+                    'first_error_eventid': first_error_eventid,
                 })
     
     # 4. Metrics (same as HDFS)
@@ -212,7 +237,7 @@ def main():
     tn = sum(1 for r in results if r['label'] == 0 and r['predicted'] == 0)
     
     logger.info("")
-    logger.info(f"📊 Results (Top-{K}):")
+    logger.info(f"� Results (Top-{K}):")
     logger.info(f"   Precision: {precision:.4f}")
     logger.info(f"   Recall:    {recall:.4f}")
     logger.info(f"   F1 Score:  {f1:.4f}")
@@ -252,6 +277,20 @@ def main():
     with open(report_path, "w", encoding="utf-8") as f:
         f.write(report_text)
     logger.info(f"✅ Report saved to {report_path}")
+    
+    # Save results to JSON for advanced report generation
+    json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results_metrics_detailed.json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump({
+            'detection_method': f"Top-{K}",
+            'precision': precision,
+            'recall': recall,
+            'f1_score': f1,
+            'accuracy': acc,
+            'tp': tp, 'fp': fp, 'tn': tn, 'fn': fn,
+            'results': results
+        }, f, indent=2, ensure_ascii=False)
+    logger.info(f"✅ JSON results saved to {json_path}")
 
 
 if __name__ == "__main__":
