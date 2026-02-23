@@ -1,0 +1,105 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyTorch Model Weights (muito grandes para GitHub)
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.safetensors
+model_weights/
+saved_models/
+model_weights_*/
+
+# Datasets (arquivos grandes)
+*.csv
+*.log
+*.log_structured
+*.log_templates
+data/*.tar.gz
+data/*.zip
+data/*.pkl
+data/*.json
+
+# Mantém apenas datasets pequenos/processados se necessário
+!data/*.txt
+!README.md
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+*.cache
+*.pkl
+*.npy
+*.npz
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+*.lnk
+
+# Resultados e relatórios temporários
+results_*.txt
+results_*.json
+temp_*.csv
+*.html
+validation_results.json
+calibration_grid_results.json
+phase*_results.json
+
+# Logs de execução
+*.log
+logs/
+debug_*.py
+
+# Test outputs
+test_*.csv
+test_results/
+output/
+
+# Node modules (se houver)
+node_modules/
+
+# Environment files
+.env
+.venv
+virtualenv/
+
+# Keep important documentation
+!README.md
+!AGENTS.md
+!CONTRIBUTING.md

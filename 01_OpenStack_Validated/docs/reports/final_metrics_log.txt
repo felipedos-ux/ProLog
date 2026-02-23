@@ -1,0 +1,41 @@
+📊 LOGGPT FAILURE DIVERSITY REPORT
+===================================
+
+🎯 ANTICIPATION ANALYSIS (Lead Time > 0)
+------------------------------------------
+   Total Detections:        169 (100%)
+   ✅ Anticipated (Lead>0):  169 (100.0%)
+   ⚠️  Not Anticipated (Lead≤0): 0 (0.0%)
+
+   📈 Anticipation Metrics (Only Lead > 0):
+      Max Lead Time:    27.70 min
+      Avg Lead Time:    17.43 min
+      Median Lead Time: 17.12 min
+
+🔹 Diversity check: Found 2 distinct failure patterns detected.
+
+📌 Pattern: End resources cleanup...
+   Count:     145 sessions
+   Best Lead: 27.70 min
+   Avg Lead:  18.76 min
+   Example:   ID 1 (Alert Loss: 18.51)
+   ------------------------------------------------
+📌 Pattern: Attach volume <*> to <*>...
+   Count:     24 sessions
+   Best Lead: 13.13 min
+   Avg Lead:  9.37 min
+   Example:   ID 3 (Alert Loss: 18.52)
+   ------------------------------------------------
+
+🏆 Top 10 Absolute Best Lead Times
+------------------------------------------
+1. [ID 281] Lead: 27.70 min | Loss: 18.52 | Log: End resources cleanup...
+2. [ID 161] Lead: 25.60 min | Loss: 18.82 | Log: End resources cleanup...
+3. [ID 321] Lead: 25.33 min | Loss: 18.51 | Log: End resources cleanup...
+4. [ID 177] Lead: 24.97 min | Loss: 18.52 | Log: End resources cleanup...
+5. [ID 350] Lead: 24.90 min | Loss: 18.52 | Log: End resources cleanup...
+6. [ID 59] Lead: 24.84 min | Loss: 18.83 | Log: End resources cleanup...
+7. [ID 47] Lead: 24.65 min | Loss: 18.83 | Log: End resources cleanup...
+8. [ID 310] Lead: 24.63 min | Loss: 18.52 | Log: End resources cleanup...
+9. [ID 88] Lead: 24.55 min | Loss: 18.82 | Log: End resources cleanup...
+10. [ID 176] Lead: 24.27 min | Loss: 18.52 | Log: End resources cleanup...

@@ -1,0 +1,461 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-02-06T18:47:30.545Z",
+  "stack": {
+    "primaryLanguage": "python",
+    "languages": [
+      "python"
+    ],
+    "frameworks": [],
+    "buildTools": [],
+    "testFrameworks": [],
+    "packageManager": null,
+    "isMonorepo": false,
+    "hasDocker": false,
+    "hasCI": false
+  },
+  "structure": {
+    "totalFiles": 26,
+    "topDirectories": [
+      {
+        "name": "calibrate_adaptive.py",
+        "fileCount": 1
+      },
+      {
+        "name": "config.py",
+        "fileCount": 1
+      },
+      {
+        "name": "dataset.py",
+        "fileCount": 1
+      },
+      {
+        "name": "detect_custom.py",
+        "fileCount": 1
+      },
+      {
+        "name": "docs",
+        "fileCount": 7
+      },
+      {
+        "name": "model_weights",
+        "fileCount": 2
+      },
+      {
+        "name": "model.py",
+        "fileCount": 1
+      },
+      {
+        "name": "models",
+        "fileCount": 2
+      },
+      {
+        "name": "README.md",
+        "fileCount": 1
+      },
+      {
+        "name": "scripts",
+        "fileCount": 5
+      },
+      {
+        "name": "threshold_config.json",
+        "fileCount": 1
+      },
+      {
+        "name": "train_custom.py",
+        "fileCount": 1
+      },
+      {
+        "name": "utils",
+        "fileCount": 2
+      }
+    ],
+    "languageDistribution": [
+      {
+        "extension": ".py",
+        "count": 11
+      },
+      {
+        "extension": ".md",
+        "count": 6
+      },
+      {
+        "extension": ".pt",
+        "count": 4
+      },
+      {
+        "extension": ".json",
+        "count": 1
+      },
+      {
+        "extension": ".pyc",
+        "count": 1
+      },
+      {
+        "extension": ".txt",
+        "count": 1
+      },
+      {
+        "extension": ".png",
+        "count": 1
+      }
+    ]
+  },
+  "architecture": {
+    "layers": [
+      {
+        "name": "Models",
+        "description": "Data structures and domain objects",
+        "directories": [
+          "."
+        ],
+        "symbolCount": 5,
+        "dependsOn": []
+      },
+      {
+        "name": "Repositories",
+        "description": "Data access and persistence",
+        "directories": [
+          "."
+        ],
+        "symbolCount": 2,
+        "dependsOn": []
+      },
+      {
+        "name": "Config",
+        "description": "Configuration and constants",
+        "directories": [
+          "."
+        ],
+        "symbolCount": 1,
+        "dependsOn": []
+      },
+      {
+        "name": "Utils",
+        "description": "Shared utilities and helpers",
+        "directories": [
+          ".",
+          "utils",
+          "scripts"
+        ],
+        "symbolCount": 6,
+        "dependsOn": []
+      }
+    ],
+    "patterns": [],
+    "entryPoints": []
+  },
+  "symbols": {
+    "classes": [
+      {
+        "name": "Block",
+        "kind": "class",
+        "file": "model.py",
+        "line": 59,
+        "exported": true
+      },
+      {
+        "name": "CausalSelfAttention",
+        "kind": "class",
+        "file": "model.py",
+        "line": 7,
+        "exported": true
+      },
+      {
+        "name": "GPTConfig",
+        "kind": "class",
+        "file": "model.py",
+        "line": 72,
+        "exported": true
+      },
+      {
+        "name": "LogGPT",
+        "kind": "class",
+        "file": "model.py",
+        "line": 81,
+        "exported": true
+      },
+      {
+        "name": "MLP",
+        "kind": "class",
+        "file": "model.py",
+        "line": 44,
+        "exported": true
+      }
+    ],
+    "interfaces": [],
+    "functions": [
+      {
+        "name": "calibrate",
+        "kind": "function",
+        "file": "scripts\\calibrate_threshold.py",
+        "line": 102,
+        "exported": true
+      },
+      {
+        "name": "check_start_logs",
+        "kind": "function",
+        "file": "scripts\\check_start_log.py",
+        "line": 3,
+        "exported": true
+      },
+      {
+        "name": "collect_losses",
+        "kind": "function",
+        "file": "calibrate_adaptive.py",
+        "line": 23,
+        "exported": true
+      },
+      {
+        "name": "evaluate_epoch",
+        "kind": "function",
+        "file": "train_custom.py",
+        "line": 65,
+        "exported": true
+      },
+      {
+        "name": "evaluate_session",
+        "kind": "function",
+        "file": "detect_custom.py",
+        "line": 30,
+        "exported": true
+      },
+      {
+        "name": "get_session_max_loss",
+        "kind": "function",
+        "file": "scripts\\calibrate_threshold.py",
+        "line": 42,
+        "exported": true
+      },
+      {
+        "name": "inspect_session",
+        "kind": "function",
+        "file": "scripts\\inspect_failures.py",
+        "line": 21,
+        "exported": true
+      },
+      {
+        "name": "load_data",
+        "kind": "function",
+        "file": "scripts\\calibrate_threshold.py",
+        "line": 20,
+        "exported": true
+      },
+      {
+        "name": "load_openstack_data",
+        "kind": "function",
+        "file": "dataset.py",
+        "line": 13,
+        "exported": true
+      },
+      {
+        "name": "main",
+        "kind": "function",
+        "file": "train_custom.py",
+        "line": 95,
+        "exported": true
+      },
+      {
+        "name": "main",
+        "kind": "function",
+        "file": "detect_custom.py",
+        "line": 165,
+        "exported": true
+      },
+      {
+        "name": "main",
+        "kind": "function",
+        "file": "calibrate_adaptive.py",
+        "line": 104,
+        "exported": true
+      },
+      {
+        "name": "prepare_llm_dataset",
+        "kind": "function",
+        "file": "dataset.py",
+        "line": 26,
+        "exported": true
+      },
+      {
+        "name": "set_seeds",
+        "kind": "function",
+        "file": "config.py",
+        "line": 43,
+        "exported": true
+      },
+      {
+        "name": "setup_logger",
+        "kind": "function",
+        "file": "utils\\logger.py",
+        "line": 5,
+        "exported": true
+      },
+      {
+        "name": "train_epoch",
+        "kind": "function",
+        "file": "train_custom.py",
+        "line": 22,
+        "exported": true
+      }
+    ],
+    "types": [],
+    "enums": []
+  },
+  "publicAPI": [
+    {
+      "name": "Block",
+      "kind": "class",
+      "file": "model.py",
+      "line": 59,
+      "exported": true
+    },
+    {
+      "name": "calibrate",
+      "kind": "function",
+      "file": "scripts\\calibrate_threshold.py",
+      "line": 102,
+      "exported": true
+    },
+    {
+      "name": "CausalSelfAttention",
+      "kind": "class",
+      "file": "model.py",
+      "line": 7,
+      "exported": true
+    },
+    {
+      "name": "check_start_logs",
+      "kind": "function",
+      "file": "scripts\\check_start_log.py",
+      "line": 3,
+      "exported": true
+    },
+    {
+      "name": "collect_losses",
+      "kind": "function",
+      "file": "calibrate_adaptive.py",
+      "line": 23,
+      "exported": true
+    },
+    {
+      "name": "evaluate_epoch",
+      "kind": "function",
+      "file": "train_custom.py",
+      "line": 65,
+      "exported": true
+    },
+    {
+      "name": "evaluate_session",
+      "kind": "function",
+      "file": "detect_custom.py",
+      "line": 30,
+      "exported": true
+    },
+    {
+      "name": "get_session_max_loss",
+      "kind": "function",
+      "file": "scripts\\calibrate_threshold.py",
+      "line": 42,
+      "exported": true
+    },
+    {
+      "name": "GPTConfig",
+      "kind": "class",
+      "file": "model.py",
+      "line": 72,
+      "exported": true
+    },
+    {
+      "name": "inspect_session",
+      "kind": "function",
+      "file": "scripts\\inspect_failures.py",
+      "line": 21,
+      "exported": true
+    },
+    {
+      "name": "load_data",
+      "kind": "function",
+      "file": "scripts\\calibrate_threshold.py",
+      "line": 20,
+      "exported": true
+    },
+    {
+      "name": "load_openstack_data",
+      "kind": "function",
+      "file": "dataset.py",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "name": "LogGPT",
+      "kind": "class",
+      "file": "model.py",
+      "line": 81,
+      "exported": true
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "train_custom.py",
+      "line": 95,
+      "exported": true
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "detect_custom.py",
+      "line": 165,
+      "exported": true
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "calibrate_adaptive.py",
+      "line": 104,
+      "exported": true
+    },
+    {
+      "name": "MLP",
+      "kind": "class",
+      "file": "model.py",
+      "line": 44,
+      "exported": true
+    },
+    {
+      "name": "prepare_llm_dataset",
+      "kind": "function",
+      "file": "dataset.py",
+      "line": 26,
+      "exported": true
+    },
+    {
+      "name": "set_seeds",
+      "kind": "function",
+      "file": "config.py",
+      "line": 43,
+      "exported": true
+    },
+    {
+      "name": "setup_logger",
+      "kind": "function",
+      "file": "utils\\logger.py",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "name": "train_epoch",
+      "kind": "function",
+      "file": "train_custom.py",
+      "line": 22,
+      "exported": true
+    }
+  ],
+  "dependencies": {
+    "mostImported": []
+  },
+  "stats": {
+    "totalSymbols": 21,
+    "exportedSymbols": 21,
+    "analysisTimeMs": 25
+  }
+}

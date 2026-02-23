@@ -1,0 +1,32 @@
+{
+    "mean_loss": 12.391348539109783,
+    "std_loss": 0.1804456316710961,
+    "k_sigma": null,
+    "threshold": 11.528461305713272,
+    "method": "balanced_avg_loss_absolute",
+    "metrics": {
+        "f1": 0.789598108747045,
+        "precision": 0.65748031496063,
+        "recall": 0.9881656804733728,
+        "specificity": 0.011363636363636364
+    },
+    "confusion_matrix": {
+        "tp": 167,
+        "fp": 87,
+        "tn": 1,
+        "fn": 2
+    },
+    "distribution": {
+        "normal_max_loss_mean": 16.738816965710033,
+        "normal_max_loss_std": 0.6831347736320125,
+        "anomaly_max_loss_mean": 16.56109600518582,
+        "anomaly_max_loss_std": 0.6098958609478193,
+        "normal_avg_loss_mean": 12.391348539109783,
+        "normal_avg_loss_std": 0.1804456316710961,
+        "anomaly_avg_loss_mean": 12.291920801992813,
+        "anomaly_avg_loss_std": 0.1786589612476871,
+        "separation_max": -0.17772096052421205,
+        "separation_avg": -0.0994277371169705,
+        "metric_used": "avg_loss"
+    }
+}

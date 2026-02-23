@@ -1,0 +1,7 @@
+{
+    "mean_loss": 34.41046777635391,
+    "std_loss": 3.16216830285642,
+    "k_sigma": 0.0,
+    "threshold": 34.41046777635391,
+    "method": "adaptive_sigma_ultra_fast"
+}
