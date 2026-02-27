@@ -175,9 +175,20 @@ def build_html(c_metrics, c_cm, c_radar, c_lt, c_tmpl, c_pipe, OS, HD, BG):
 <p>O HDFS é o sistema de arquivos distribuído do Hadoop. Cada bloco de dados gera uma sequência de log (alocação → replicação → servir leituras). As falhas são predominantemente de I/O (rede, disco). O dataset é muito grande (~575K blocos), o que dá ao modelo bastante dados para aprender. <strong>Desafio:</strong> muitas sessões muito curtas (2-5 eventos).</p>
 
 <h3>🔴 BGL — Blue Gene/L Supercomputer</h3>
-<p>O BGL é um supercomputador IBM com 131.072 processadores. O dataset registra falhas de hardware: erros de memória, cache, rede torus, panicles de kernel. É fundamentalmente diferente dos outros dois datasets.</p>
+<p>O BGL é um supercomputador IBM com 131.072 processadores. O dataset registra falhas de hardware: erros de memória, cache, rede torus, kernel panics. É fundamentalmente diferente dos outros dois datasets.</p>
+
+<h4>⚠️ Diferença Estrutural Crítica: Como as sessões são formadas</h4>
+<p>A diferença mais importante entre os datasets está na <strong>forma como os logs são agrupados em sessões</strong>:</p>
+<table>
+<tr><th>Dataset</th><th>Agrupamento</th><th>O que representa</th><th>Compatível com Causal LM?</th></tr>
+<tr><td style="color:#27ae60"><strong>OpenStack</strong></td><td><code>test_id</code></td><td>Uma <strong>operação completa</strong> (teste Tempest) com início, meio e fim definidos</td><td><span class="badge bg">✅ Sim</span></td></tr>
+<tr><td style="color:#3498db"><strong>HDFS</strong></td><td><code>block_id</code></td><td>O <strong>ciclo de vida</strong> de um bloco: alocação → replicação → leitura</td><td><span class="badge bb">✅ Sim</span></td></tr>
+<tr><td style="color:#e74c3c"><strong>BGL</strong></td><td><code>node_id</code></td><td>Uma <strong>máquina física</strong> — acumula logs de meses de operação misturada</td><td><span class="badge br">❌ Não</span></td></tr>
+</table>
+<p>No OpenStack e HDFS, cada sessão é um <strong>ciclo de vida completo de uma operação</strong> — o modelo consegue aprender a sequência "normal" (ex: criar VM → configurar rede → boot → sucesso) e detectar desvios (ex: timeout no meio). No BGL, o <code>node_id</code> (ex: <code>R02-M1-N0-C:J12-U11</code>) é apenas o endereço de uma máquina física que registra <strong>todos os tipos de eventos ao longo de meses</strong> sem nenhuma separação lógica. Não há um "fluxo previsível" — é uma mistura caótica de eventos de hardware rotineiros e erros reais.</p>
+
 <div class="warn">
-⚠️ <strong>Por que o BGL não funcionou bem:</strong> O modelo foi treinado com padrões de OpenStack (software) e testado em logs de BGL (hardware). Esses domínios são tão diferentes que o modelo não consegue distinguir o "normal" do "anômalo" — ele acha tudo estranho. O BGL possui <strong>242 templates únicos</strong> (8x mais que os outros datasets), e esses templates descrevem eventos de hardware que nunca apareceram no treinamento. O resultado é um modelo que classifica quase tudo como anomalia (recall=100% mas precision=48.9%).
+⚠️ <strong>Conclusão da análise estrutural:</strong> A abordagem Causal LM ("preveja o próximo evento") só funciona quando os logs formam <strong>sequências previsíveis com começo, meio e fim</strong>. Datasets como OpenStack (<code>test_id</code>) e HDFS (<code>block_id</code>) naturalmente satisfazem essa condição. O BGL, por agrupar logs por máquina física (<code>node_id</code>), <strong>não possui essa propriedade</strong>, tornando a abordagem LogGPT fundamentalmente inadequada para este tipo de dado — independentemente de re-treinamento.
 </div>
 </section>
 
@@ -263,30 +274,56 @@ def build_html(c_metrics, c_cm, c_radar, c_lt, c_tmpl, c_pipe, OS, HD, BG):
 </div>
 
 <h3>O que aconteceu?</h3>
-<p>O BGL obteve <strong>100% de recall</strong> mas apenas <strong>48.9% de precision</strong>. Isso significa que o modelo <strong>classificou praticamente TODAS as sessões como anômalas</strong>, acertando as que realmente eram anômalas mas também gerando uma quantidade massiva de falsos positivos.</p>
+<p>O BGL obteve <strong>100% de recall</strong> mas apenas <strong>48.9% de precision</strong>. Isso significa que o modelo <strong>classificou praticamente TODAS as sessões como anômalas</strong>, acertando as que realmente eram anômalas mas também gerando uma quantidade massiva de falsos positivos. Existem duas causas raíz combinadas:</p>
 
-<h3>Causas Raíz do Insucesso</h3>
-
-<h4>1. Incompatibilidade de Domínio (Transfer Learning Ineficaz)</h4>
-<p>O modelo foi treinado em logs de <strong>OpenStack</strong> (software de cloud) e testado em logs de <strong>BGL</strong> (hardware de supercomputador). São domínios completamente diferentes:</p>
+<h3>Causa 1 — Modelo treinado no domínio errado (Transfer Learning)</h3>
+<p>O modelo foi treinado exclusivamente com logs de <strong>OpenStack</strong> (software de cloud) e testado em logs de <strong>BGL</strong> (hardware de supercomputador). São vocabulários completamente diferentes:</p>
 <ul>
 <li><strong>OpenStack:</strong> HTTP requests, API calls, instâncias de VMs, operações CRUD</li>
 <li><strong>BGL:</strong> Erros de memória DDR, parity errors, cache ECC, rede torus, kernel panics</li>
 </ul>
-<p>O modelo nunca viu esses tipos de eventos durante o treinamento, então qualquer sequência do BGL parece "anômala".</p>
+<p>O modelo nunca viu esses tipos de eventos durante o treinamento, então <strong>qualquer sequência do BGL parece "anômala"</strong> para ele.</p>
 
-<h4>2. Diversidade Excessiva de Templates</h4>
+<h4>Diversidade de Templates</h4>
 <div class="img-c"><img src="data:image/png;base64,{c_tmpl}" alt="Templates"></div>
-<p>O BGL possui <strong>242 templates únicos</strong> — 8 vezes mais que o OpenStack (30) ou HDFS (29). Essa diversidade extrema significa que o vocabulário do BGL é muito mais rico e complexo, tornando impossível para um modelo treinado em outro domínio fazer previsões corretas.</p>
+<p>O BGL possui <strong>242 templates únicos</strong> — 8 vezes mais que o OpenStack (30) ou HDFS (29). Nenhum deles foi visto pelo modelo durante o treinamento.</p>
 
-<h4>3. Natureza Diferente dos Eventos</h4>
-<p>No OpenStack e HDFS, as anomalias são <em>perturbações</em> no padrão normal (um erro HTTP no meio de operações normais). No BGL, os eventos de "erro" e "normal" são frequentemente tipos de log completamente diferentes (registros de hardware vs. mensagens de aplicação), e não perturbações no mesmo fluxo.</p>
+<h3>Causa 2 — Estrutura de sessão incompatível (Problema Fundamental)</h3>
+<p>Mesmo que re-treinássemos o modelo com dados nativos do BGL, <strong>a abordagem LogGPT ainda não funcionaria</strong>, porque a estrutura dos logs do BGL é fundamentalmente incompatível com o método Causal LM.</p>
 
-<h4>4. Modelo com Janela Fixa (Sliding Window)</h4>
-<p>Enquanto OpenStack e HDFS usam sessões naturais (test_id, block_id), o BGL foi segmentado com <strong>janelas deslizantes de 20 eventos</strong>. Isso pode quebrar o contexto da sequência e misturar eventos que não pertencem ao mesmo incidente.</p>
+<h4>🔑 A diferença crucial: o que é uma "sessão"</h4>
+<table>
+<tr><th>Dataset</th><th>ID da Sessão</th><th>O que representa</th><th>Padrão sequencial?</th></tr>
+<tr><td style="color:#27ae60"><strong>OpenStack</strong></td><td><code>test_id</code></td><td>Uma operação completa com início → meio → fim</td><td><span class="badge bg">✅ Previsível</span></td></tr>
+<tr><td style="color:#3498db"><strong>HDFS</strong></td><td><code>block_id</code></td><td>Ciclo de vida do bloco: alocação → replicação → leitura</td><td><span class="badge bb">✅ Previsível</span></td></tr>
+<tr><td style="color:#e74c3c"><strong>BGL</strong></td><td><code>node_id</code></td><td>Máquina física — meses de logs misturados sem separação</td><td><span class="badge br">❌ Caótico</span></td></tr>
+</table>
+
+<p>No OpenStack, um <code>test_id</code> como <code>"nova.compute.test_create_instance"</code> representa um <strong>teste completo</strong>: criar VM → configurar rede → fazer boot → verificar status → limpar. O modelo aprende essa sequência "healthy" e detecta quando algo desvia (ex: timeout no meio).</p>
+
+<p>No HDFS, um <code>block_id</code> como <code>"blk_-1608999687919862906"</code> tem um <strong>ciclo de vida natural</strong>: o bloco é alocado, replicado em 3 nós, e depois servido para leituras. O modelo aprende essa cadeia e detecta quando um bloco falha no meio.</p>
+
+<p>No BGL, um <code>node_id</code> como <code>"R02-M1-N0-C:J12-U11"</code> é simplesmente <strong>o endereço de um nó físico do supercomputador</strong>. Ele acumula TODOS os logs daquela máquina ao longo de <strong>7 meses de operação</strong> (jun/2005 a jan/2006). Não existe um "fluxo" — é uma mistura caótica de:</p>
+<ul>
+<li>Eventos de hardware corriqueiros (correções de ECC, bit steering)</li>
+<li>Erros reais (kernel panics, falhas de memória)</li>
+<li>Mensagens de manutenção (reinicializações, atualizações)</li>
+<li>Processos de diferentes aplicações rodando simultaneamente</li>
+</ul>
+
+<div class="note">
+💡 <strong>Analogia:</strong> Imagine que você quer que um médico identifique batimentos cardíacos irregulares. No OpenStack e HDFS, ele recebe um exame de ECG completo (começo, meio, fim — uma sequência clara). No BGL, ele recebe <strong>7 meses de registros misturados</strong> de pressão, temperatura, batimento, sono, exercício, tudo junto e fora de ordem. Não há como aprender um "padrão normal" nesse caos.
+</div>
+
+<p>Para tentar contornar isso, dividimos os logs do BGL em <strong>janelas deslizantes de 20 eventos</strong> (sliding window). Mas isso é artificial e:</p>
+<ul>
+<li>Quebra o contexto temporal (uma janela pode conter metade de um incidente)</li>
+<li>Mistura eventos de diferentes origens na mesma janela</li>
+<li>Não captura relações de longo prazo entre eventos do mesmo nó</li>
+</ul>
 
 <div class="warn">
-⚠️ <strong>Conclusão BGL:</strong> Para o BGL funcionar adequadamente, seria necessário <strong>re-treinar o modelo</strong> diretamente com logs normais do BGL. A transferência de aprendizado entre domínios tão diferentes (software → hardware) não se sustenta com a abordagem Causal LM pura.
+⚠️ <strong>Conclusão BGL:</strong> O insucesso no BGL não é apenas uma questão de re-treinamento. A abordagem Causal LM ("preveja o próximo evento na sequência") <strong>depende fundamentalmente de sessões com padrões sequenciais previsíveis</strong>. O BGL não possui essa propriedade — seus logs são agrupados por máquina física, não por operação lógica. Para datasets com essa estrutura, abordagens alternativas como <strong>frequência de templates por janela temporal</strong>, <strong>grafos de dependência de hardware</strong>, ou <strong>modelos de séries temporais</strong> seriam mais adequadas.
 </div>
 </section>
 
