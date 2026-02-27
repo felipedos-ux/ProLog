@@ -280,6 +280,41 @@ def main():
         f.write(full_report)
         
     logger.info("✅ Report saved to results_metrics_detailed.txt")
+    
+    # Save results as JSON for report generation
+    json_results = {
+        "metrics": {
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+            "accuracy": (tp + tn) / (tp + tn + fp + fn),
+            "confusion_matrix": [[tn, fp], [fn, tp]]
+        },
+        "threshold": THRESHOLD,
+        "lead_time_metrics": {
+            "avg_lead_minutes": float(avg_lead_positive),
+            "median_lead_minutes": float(median_lead_positive),
+            "max_lead_minutes": float(max_lead_positive),
+            "anticipated_count": tp_anticipated,
+            "not_anticipated_count": tp_not_anticipated
+        },
+        "results": []
+    }
+    
+    for r in results:
+        json_results["results"].append({
+            "session_id": r["session_id"],
+            "label": int(r["label"]),
+            "is_detected": bool(r["is_detected"]),
+            "lead_time_minutes": float(r["lead_time"]) if r["is_detected"] else None,
+            "alert_loss": float(r["alert_loss"]) if r["is_detected"] else None,
+            "final_log": r["final_log"]
+        })
+    
+    with open("HDFS_test_results.json", "w", encoding="utf-8") as f:
+        json.dump(json_results, f, indent=2)
+    
+    logger.info("✅ JSON results saved to HDFS_test_results.json")
 
 
 if __name__ == "__main__":

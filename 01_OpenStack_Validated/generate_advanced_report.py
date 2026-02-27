@@ -104,12 +104,13 @@ def run_deep_analysis():
             pl.col("timestamp").max().alias("end_time"),
             pl.col("EventId").count().alias("log_count"),
             pl.col("EventTemplate").last().alias("last_template"),
-            # Pega o primeiro timestamp onde anom_label = 1 (momento da falha real)
+            # Timestamp do PRIMEIRO log com anom_label=1 (referência real do erro)
             pl.col("timestamp").filter(pl.col("anom_label") == 1).first().alias("first_error_time"),
-            # Pega o template do erro real
+            # Template do erro real
             pl.col("EventTemplate").filter(pl.col("anom_label") == 1).first().alias("error_template"),
-            # Conta quantos logs até o erro real
-            pl.col("EventId").filter(pl.col("timestamp") <= pl.col("timestamp").filter(pl.col("anom_label") == 1).first()).count().alias("steps_to_error")
+            # Índice (0-based) do primeiro log anômalo dentro da sessão ordenada.
+            # cum_sum().eq(1).arg_true().first() retorna o índice da primeira ocorrência de anom_label=1.
+            pl.col("anom_label").cum_sum().eq(1).arg_true().first().alias("first_error_index"),
         ])
     ).to_pandas()
     
@@ -131,43 +132,56 @@ def run_deep_analysis():
     
     # 4. Cruzar Dados (Sessão x Detecção)
     if not det_df.empty:
-        # Renomear first_anomaly_step para detected_step para compatibilidade
         det_df['detected_step'] = det_df['first_anomaly_step']
         merged = pd.merge(session_data, det_df, on='test_id', how='left')
-        
-        # Calcular lead time em passos (quantos passos antes do erro real detectamos)
-        # Se detectou antes do erro, steps_before_error > 0
-        # Infelizmente não temos a posição exata do erro real na sequência, então usamos uma estimativa
-        # Assumimos que o erro está próximo do fim da sessão para sessões anômalas
-        anom_sessions = merged[merged['is_anomaly'] == 1].copy()
-        anom_sessions['estimated_error_position'] = (anom_sessions['log_count'] * 0.9).astype(int)  # Assumindo erro a 90% da sessão
-        merged = pd.merge(merged, anom_sessions[['test_id', 'estimated_error_position']], on='test_id', how='left')
-        
-        # Calcular steps_before_error
-        merged['steps_before_error'] = merged['estimated_error_position'] - merged['detected_step']
+
+        # ── Lead time em passos ─────────────────────────────────────────────────
+        # Usamos first_error_index (índice 0-based do primeiro log anômalo) como
+        # posição real do erro. steps_before_error > 0 significa que o modelo
+        # disparou o alerta ANTES do primeiro error real.
+        merged['first_error_index'] = merged.get('first_error_index', np.nan)
+        if 'first_error_index' not in merged.columns:
+            merged['first_error_index'] = np.nan
+        merged['steps_before_error'] = merged['first_error_index'] - merged['detected_step']
         merged['steps_before_error'] = merged['steps_before_error'].fillna(0)
-        
-        # Calcular lead time temporal em minutos
-        # Primeiro estimar o timestamp da detecção
-        anom_sessions = merged[merged['is_anomaly'] == 1].copy()
-        anom_sessions['avg_time_per_event'] = anom_sessions['duration_sec'] / anom_sessions['log_count']
-        anom_sessions['detection_timestamp_est'] = anom_sessions['start_time'] + pd.to_timedelta(
-            anom_sessions['detected_step'] * anom_sessions['avg_time_per_event'], unit='s'
-        )
-        merged = pd.merge(merged, anom_sessions[['test_id', 'detection_timestamp_est']], on='test_id', how='left')
-        
-        # Lead time = (timestamp detecção - timestamp erro real) em minutos
-        merged['lead_time_minutes'] = (merged['detection_timestamp_est'] - merged['first_error_time']).dt.total_seconds() / 60
-        
+
+        # ── Lead time temporal em minutos ───────────────────────────────────────
+        # ESTRATÉGIA:
+        #   a) Se detect_custom.py já gerou 'lead_time_minutes' (com timestamps reais),
+        #      usamos esses valores diretamente — são os mais precisos.
+        #   b) Caso contrário, estimamos via interpolação linear dos timestamps:
+        #      detection_timestamp_est = start_time + (detected_step / log_count) * (end_time - start_time)
+        #      lead_time_minutes = (first_error_time - detection_timestamp_est) / 60
+        #      (positivo = antecipou, negativo = reativo)
+        if 'lead_time_minutes' in det_df.columns and det_df['lead_time_minutes'].notna().any():
+            # Caso (a): valores pré-calculados com timestamps reais — já estão no merged
+            pass  # lead_time_minutes já veio do merge com det_df
+        else:
+            # Caso (b): estimar via interpolação
+            anom_sessions = merged[merged['is_anomaly'] == 1].copy()
+            anom_sessions['avg_time_per_event'] = anom_sessions['duration_sec'] / anom_sessions['log_count']
+            anom_sessions['detection_timestamp_est'] = anom_sessions['start_time'] + pd.to_timedelta(
+                anom_sessions['detected_step'] * anom_sessions['avg_time_per_event'], unit='s'
+            )
+            # Lead time = primeiro_erro_real - timestamp_detecção  (positivo = antecipou)
+            anom_sessions['lead_time_minutes'] = (
+                anom_sessions['first_error_time'] - anom_sessions['detection_timestamp_est']
+            ).dt.total_seconds() / 60
+            merged = pd.merge(
+                merged.drop(columns=['lead_time_minutes'], errors='ignore'),
+                anom_sessions[['test_id', 'detection_timestamp_est', 'lead_time_minutes']],
+                on='test_id', how='left'
+            )
+
     else:
         merged = session_data.copy()
         merged['detected_step'] = np.nan
         merged['detected'] = False
         merged['lead_time_minutes'] = np.nan
         merged['steps_before_error'] = np.nan
-        
+
     merged['detected'] = merged['detected_step'].notna()
-    
+
     return df.to_pandas(), merged
 
 
@@ -209,29 +223,57 @@ def plot_training_curve():
 
 
 def plot_lead_time_distribution(merged_df):
-    """Calcula a distribuição do instante em que a falha é detectada vs total da sessão"""
-    anom_detected = merged_df[(merged_df['is_anomaly'] == 1) & (merged_df['detected'] == True)].copy()
-    
+    """Distribuição do lead time real (minutos de antecipação antes do primeiro erro)."""
+    anom_detected = merged_df[
+        (merged_df['is_anomaly'] == 1) & (merged_df['detected'] == True)
+    ].copy()
+
     if anom_detected.empty:
-        fig, ax = plt.subplots(figsize=(8,4))
+        fig, ax = plt.subplots(figsize=(8, 4))
         ax.text(0.5, 0.5, "Sem dados de Lead Time", ha='center')
-        return fig_to_base64(fig)
-        
-    # Lead Time (Percentual) = Em que % da sessão o modelo detectou a falha?
-    # Como não temos o timestamp do 'step' facilmente aqui, estimamos pela proporção: (detected_step / log_count) * 100
-    anom_detected['detection_progress_pct'] = (anom_detected['detected_step'] / anom_detected['log_count']) * 100
-    # Limita a 100% pra gráfico ficar bonito
-    anom_detected['detection_progress_pct'] = anom_detected['detection_progress_pct'].clip(upper=100)
-    
+        return fig_to_base64(fig), anom_detected
+
+    # Mantém detection_progress_pct para compatibilidade com tr_gen (exibição na tabela)
+    anom_detected['detection_progress_pct'] = (
+        (anom_detected['detected_step'] / anom_detected['log_count']) * 100
+    ).clip(upper=100)
+
+    # ── Usar lead_time_minutes real quando disponível ──────────────────────
+    # lead_time_minutes > 0  → detecção ANTES do primeiro erro (antecipação)
+    # lead_time_minutes <= 0 → detecção DEPOIS ou simultânea (reativa)
+    has_real_lt = 'lead_time_minutes' in anom_detected.columns and anom_detected['lead_time_minutes'].notna().any()
+
+    if has_real_lt:
+        plot_col = 'lead_time_minutes'
+        xlabel = "Lead Time Real (minutos antes do 1º erro)  ·  Positivo = Antecipação"
+        title = "Distribuição do Lead Time de Antecipação (Tempo Real)"
+        median_val = anom_detected[plot_col].median()
+        median_label = f'Mediana: {median_val:.1f} min'
+        xlim_lo = anom_detected[plot_col].quantile(0.02)
+        xlim_hi = anom_detected[plot_col].quantile(0.98)
+    else:
+        plot_col = 'detection_progress_pct'
+        xlabel = "% de Conclusão da Sessão no Momento da Detecção"
+        title = "Distribuição do Momento de Descoberta da Anomalia (Estimativa)"
+        median_val = anom_detected[plot_col].median()
+        median_label = f'Mediana: {median_val:.1f}%'
+        xlim_lo = 0
+        xlim_hi = 100
+
     fig, ax = plt.subplots(figsize=(10, 5))
-    sns.histplot(data=anom_detected, x='detection_progress_pct', bins=20, kde=True, color='#e74c3c', ax=ax)
-    ax.set_title("Distribuição do Momento da Descoberta da Anomalia", fontsize=16)
-    ax.set_xlabel("% de Conclusão da Sessão de Logs (0% = Início, 100% = Fim)", fontsize=14)
+    sns.histplot(data=anom_detected, x=plot_col, bins=20, kde=True, color='#e74c3c', ax=ax)
+    ax.set_title(title, fontsize=16)
+    ax.set_xlabel(xlabel, fontsize=13)
     ax.set_ylabel("Quantidade de Sessões", fontsize=14)
-    # Adiciona linha mediana
-    median_pct = anom_detected['detection_progress_pct'].median()
-    ax.axvline(median_pct, color='k', linestyle='dashed', linewidth=2)
-    ax.text(median_pct+2, ax.get_ylim()[1]*0.9, f'Mediana: {median_pct:.1f}%', fontweight='bold')
+    ax.set_xlim(xlim_lo, xlim_hi)
+    ax.axvline(median_val, color='k', linestyle='dashed', linewidth=2)
+    ax.text(median_val + (xlim_hi - xlim_lo) * 0.02, ax.get_ylim()[1] * 0.9,
+            median_label, fontweight='bold')
+
+    if has_real_lt:
+        ax.axvline(0, color='#f39c12', linestyle='solid', linewidth=1.5, label='Linha zero')
+        ax.legend(['Dist. Lead Time', 'Mediana', 'Detecção simultânea (0 min)'], fontsize=11)
+
     return fig_to_base64(fig), anom_detected
 
 
@@ -266,10 +308,14 @@ def generate_advanced_report():
     
     # Cálculos para tabelas Top 10
     if not anom_detected.empty:
-        # Piores lead times = detectou muito tarde (detection_progress_pct perto de 100%)
-        worst_lt = anom_detected.sort_values('detection_progress_pct', ascending=False).head(10)
-        # Melhores lead times = detectou super cedo (detection_progress_pct perto de 0%)
-        best_lt = anom_detected.sort_values('detection_progress_pct', ascending=True).head(10)
+        # Ordenar pelo lead time real (minutos) quando disponível; caso contrário, usando % de progresso
+        has_real_lt = 'lead_time_minutes' in anom_detected.columns and anom_detected['lead_time_minutes'].notna().any()
+        sort_col = 'lead_time_minutes' if has_real_lt else 'detection_progress_pct'
+        # Melhores = maior antecipação (lead_time_minutes > 0, quanto maior melhor)
+        best_lt = anom_detected.sort_values(sort_col, ascending=False).head(10)
+        # Piores = menor antecipação ou reativo (lead_time_minutes <= 0)
+        worst_lt = anom_detected.sort_values(sort_col, ascending=True).head(10)
+
     else:
         worst_lt, best_lt = pd.DataFrame(), pd.DataFrame()
 

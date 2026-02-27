@@ -130,10 +130,20 @@ def main():
             pl.col("EventTemplate").filter(pl.col("anom_label") == 1).first().alias("error_template"),
             pl.col("EventTemplate").filter(pl.col("anom_label") == 1).first().alias("first_error_template"),
             pl.col("timestamp").filter(pl.col("anom_label") == 1).first().alias("first_error_timestamp"),
-            pl.col("EventId").filter(pl.col("anom_label") == 1).first().alias("first_error_eventid")
+            pl.col("EventId").filter(pl.col("anom_label") == 1).first().alias("first_error_eventid"),
+            # Index (0-based) of the first anomalous log within the sorted session
+            pl.col("anom_label").cum_sum().eq(1).arg_true().first().alias("first_error_index"),
         ])
     )
     error_info_dict = {row["test_id"]: row for row in error_info.iter_rows(named=True)}
+
+    # Build per-session ordered timestamp list so we can map token-step → real timestamp.
+    # The tokenizer joins EventTemplates with spaces, so token steps correspond to event indices.
+    session_timestamps_dict = {}
+    for tid, grp in df.sort("timestamp").group_by("test_id", maintain_order=True):
+        # grp is a Polars DataFrame for this session, already sorted by timestamp
+        timestamps = grp["timestamp"].to_list()
+        session_timestamps_dict[tid] = timestamps
     
     # Split normal IDs for test (same split as training used)
     normal_ids = df.filter(pl.col("anom_label") == 0)["test_id"].unique().to_list()
@@ -206,9 +216,40 @@ def main():
                 first_error_template = err_info.get('first_error_template', None)
                 first_error_timestamp = err_info.get('first_error_timestamp', None)
                 first_error_eventid = err_info.get('first_error_eventid', None)
+                first_error_index = err_info.get('first_error_index', None)
                 
                 log_desc = event_templates[i][:LOG_DESC_MAX_LEN]
                 log_hash = hashlib.md5(log_desc.encode()).hexdigest()[:8]
+                
+                # ── Lead Time Calculation ────────────────────────────────────────
+                # We use the real per-event timestamps so that:
+                #   alert_timestamp  = timestamp of the event at first_anomaly_step
+                #   lead_time        = first_error_timestamp - alert_timestamp
+                # Positive lead_time → model detected the anomaly BEFORE the real error.
+                # Negative lead_time → model detected AFTER (reactive).
+                alert_timestamp_str = None
+                lead_time_seconds = None
+                lead_time_minutes = None
+                alert_step_before_error = None
+
+                if pred_label == 1 and first_step >= 0 and first_error_timestamp is not None:
+                    session_ts = session_timestamps_dict.get(tid, [])
+                    if first_step < len(session_ts):
+                        # Map top-k token step to real event timestamp
+                        # first_step is 0-indexed position in the token sequence.
+                        # Because we join EventTemplates with spaces, step N corresponds
+                        # to event N (the token that follows N words/events of context).
+                        alert_ts = pd.to_datetime(session_ts[first_step])
+                        error_ts = pd.to_datetime(first_error_timestamp)
+                        delta_sec = (error_ts - alert_ts).total_seconds()
+                        alert_timestamp_str = str(alert_ts)
+                        lead_time_seconds = delta_sec
+                        lead_time_minutes = delta_sec / 60.0
+
+                    if first_error_index is not None and first_step >= 0:
+                        # Positive = model detected N events before the real error
+                        alert_step_before_error = int(first_error_index) - first_step
+                # ─────────────────────────────────────────────────────────────────
                 
                 results.append({
                     'test_id': tid,
@@ -218,10 +259,16 @@ def main():
                     'n_events': n_events,
                     'log_desc': log_desc,
                     'log_hash': log_hash,
-                    'error_template': error_template,  # Template do erro real
+                    'error_template': error_template,
                     'first_error_template': first_error_template,
                     'first_error_timestamp': str(first_error_timestamp) if first_error_timestamp is not None else None,
+                    'first_error_index': first_error_index,
                     'first_error_eventid': first_error_eventid,
+                    # ── Lead time fields (corrected) ──
+                    'alert_timestamp': alert_timestamp_str,        # Timestamp real da detecção
+                    'lead_time_seconds': lead_time_seconds,        # >0 = antecipou, <0 = reativo
+                    'lead_time_minutes': lead_time_minutes,
+                    'alert_step_before_error': alert_step_before_error,  # em passos de evento
                 })
     
     # 4. Metrics (same as HDFS)

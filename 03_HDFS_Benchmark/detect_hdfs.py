@@ -7,6 +7,7 @@ from sklearn.metrics import precision_recall_fscore_support, confusion_matrix, a
 import config_hdfs as config
 from model import LogGPT
 from utils.logger import setup_logger
+import json
 
 logger = setup_logger(__name__)
 
@@ -176,20 +177,46 @@ def detect():
     precision, recall, f1, _ = precision_recall_fscore_support(y_true, y_pred, average='binary')
     acc = accuracy_score(y_true, y_pred)
     
+    # Confusion Matrix
+    cm = confusion_matrix(y_true, y_pred)
+    
     logger.info(f"Results (Top-{K}):")
     logger.info(f"Precision: {precision:.4f}")
     logger.info(f"Recall: {recall:.4f}")
     logger.info(f"F1 Score: {f1:.4f}")
     logger.info(f"Accuracy: {acc:.4f}")
+    logger.info(f"Confusion Matrix:\n{cm}")
     
     # Save Results
     res_df = pl.DataFrame(results, schema=["BlockId", "Label", "Predicted", "FirstAnomalyStep"], orient="row")
     res_df.write_csv(str(result_path))
     logger.info(f"Detailed results saved to {result_path}")
     
-    # Confusion Matrix
-    cm = confusion_matrix(y_true, y_pred)
-    logger.info(f"Confusion Matrix:\n{cm}")
+    # Save as JSON for easier analysis
+    result_json_path = str(result_path).replace('.csv', '.json')
+    json_results = []
+    for r in results:
+        json_results.append({
+            "BlockId": r[0],
+            "Label": int(r[1]),
+            "Predicted": int(r[2]),
+            "FirstAnomalyStep": int(r[3]) if r[3] != -1 else None
+        })
+    
+    with open(result_json_path, 'w') as f:
+        json.dump({
+            "metrics": {
+                "precision": precision,
+                "recall": recall,
+                "f1": f1,
+                "accuracy": acc,
+                "confusion_matrix": cm.tolist()
+            },
+            "results": json_results,
+            "top_k": K
+        }, f, indent=2)
+    
+    logger.info(f"JSON results saved to {result_json_path}")
 
 if __name__ == "__main__":
     detect()
