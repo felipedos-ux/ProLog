@@ -147,6 +147,93 @@ def build_html(c_metrics, c_cm, c_radar, c_lt, c_tmpl, c_pipe, OS, HD, BG):
 <tr><td>Scikit-learn</td><td>1.x</td><td>Métricas (precision, recall, F1, confusion matrix)</td></tr>
 <tr><td>Matplotlib + Seaborn</td><td>3.x / 0.13</td><td>Visualizações e gráficos</td></tr>
 </table>
+
+<h3>Implementação Técnica — Parâmetros e Código</h3>
+<p>Abaixo detalhamos os hiperparâmetros escolhidos para cada dataset, com justificativa técnica para cada decisão.</p>
+
+<h4>Comparação de Hiperparâmetros</h4>
+<table>
+<tr><th>Parâmetro</th><th style="color:#27ae60">OpenStack</th><th style="color:#3498db">HDFS</th><th>Justificativa</th></tr>
+<tr><td><strong>Tokenizer Base</strong></td><td><code>gpt2</code></td><td><code>distilgpt2</code></td><td>O OpenStack usa o tokenizer GPT-2 completo; HDFS usa DistilGPT-2 (mesma tokenização, modelo menor) por questão de performance no volume de dados (~575K sessões).</td></tr>
+<tr><td><strong>BLOCK_SIZE</strong></td><td><code>1024</code></td><td><code>128</code></td><td>OpenStack tem sessões longas (média de 494 logs por teste) — precisa de contexto grande. HDFS tem sessões curtas (2-20 eventos por bloco) — 128 tokens é mais que suficiente e otimiza memória GPU.</td></tr>
+<tr><td><strong>BATCH_SIZE</strong></td><td><code>8</code></td><td><code>64</code></td><td>OpenStack com BLOCK_SIZE=1024 consome ~12GB VRAM com batch de 8. HDFS com BLOCK_SIZE=128 permite batches 8x maiores, acelerando o treinamento na RTX 3080 Ti.</td></tr>
+<tr><td><strong>EPOCHS</strong></td><td><code>10</code></td><td><code>30</code></td><td>OpenStack tem apenas 420 sessões — 10 épocas são suficientes para convergir sem overfitting. HDFS tem ~460K sessões de treino — precisa de mais épocas para o modelo aprender padrões de blocos curtos.</td></tr>
+<tr><td><strong>LEARNING_RATE</strong></td><td><code>1e-4</code></td><td><code>1e-4</code></td><td>Taxa de aprendizado conservadora. Valor padrão do paper original LogGPT que se mostrou estável em ambos os datasets.</td></tr>
+<tr><td><strong>N_LAYER / N_HEAD / N_EMBD</strong></td><td colspan="2"><code>4 / 4 / 256</code></td><td>Modelo "Small" com ~5M parâmetros. 4 camadas e 4 cabeças de atenção capturam padrões sequenciais sem risco de overfitting em datasets menores.</td></tr>
+<tr><td><strong>DROPOUT</strong></td><td colspan="2"><code>0.1</code></td><td>Regularização leve (10% dos neurônios desligados aleatoriamente) para evitar memorização.</td></tr>
+<tr><td><strong>K (Top-K)</strong></td><td colspan="2"><code>5</code></td><td>Se o próximo evento real não estiver entre as 5 predições mais prováveis do modelo, é marcado como anomalia. K=5 equilibra sensibilidade (detectar anomalias sutis) vs especificidade (evitar falsos positivos). Valores menores (K=1) geram muitos falsos positivos; maiores (K=10) perdem anomalias sutis.</td></tr>
+<tr><td><strong>SKIP_START_LOGS</strong></td><td><code>1</code></td><td><code>3</code></td><td>Ignora os N primeiros logs de cada sessão durante a detecção ("cold start"). No OpenStack, anomalias podem aparecer logo no 2º evento (sessões de 7 logs); no HDFS, os primeiros 3 eventos são sempre de alocação (previsíveis).</td></tr>
+<tr><td><strong>LOG_COLUMN</strong></td><td><code>EventId</code></td><td><code>EventTemplate</code></td><td>OpenStack usa o hash curto do EventId (1-2 tokens); HDFS usa o template completo. A escolha impacta a tokenização — EventId produz sequências mais compactas.</td></tr>
+<tr><td><strong>SEED</strong></td><td colspan="2"><code>42</code></td><td>Semente fixa para reprodutibilidade total dos experimentos.</td></tr>
+</table>
+
+<h4>Arquitetura do Modelo — LogGPT Small</h4>
+<p>O modelo usa uma arquitetura GPT-2 customizada ("LogGPT-Small") com as seguintes especificações:</p>
+<pre style="background:rgba(0,0,0,.3);padding:20px;border-radius:8px;overflow-x:auto;font-size:12px;color:#e0e0e0;font-family:'Fira Code',monospace"><span style="color:#7f8c8d"># model.py — Definição do modelo</span>
+<span style="color:#e74c3c">class</span> <span style="color:#f39c12">LogGPT</span>(nn.Module):
+    <span style="color:#7f8c8d">\"\"\"GPT-2 customizado para detecção de anomalias em logs.\"\"\"</span>
+    <span style="color:#e74c3c">def</span> __init__(self, config):
+        self.transformer = GPT2Model(config)  <span style="color:#7f8c8d"># 4 layers, 4 heads, 256 embd</span>
+        self.lm_head = nn.Linear(config.n_embd, config.vocab_size)
+        
+    <span style="color:#e74c3c">def</span> forward(self, input_ids):
+        hidden = self.transformer(input_ids).last_hidden_state
+        logits = self.lm_head(hidden)  <span style="color:#7f8c8d"># Shape: [batch, seq_len, vocab_size]</span>
+        <span style="color:#e74c3c">return</span> logits</pre>
+
+<h4>Detecção Top-K — Código Principal</h4>
+<p>O trecho abaixo mostra a lógica central de detecção, idêntica para OpenStack e HDFS:</p>
+<pre style="background:rgba(0,0,0,.3);padding:20px;border-radius:8px;overflow-x:auto;font-size:12px;color:#e0e0e0;font-family:'Fira Code',monospace"><span style="color:#7f8c8d"># detect_custom.py — Lógica Top-K</span>
+K = <span style="color:#3498db">5</span>  <span style="color:#7f8c8d"># Top-K parameter</span>
+
+<span style="color:#7f8c8d"># 1. Forward pass pelo modelo</span>
+logits, _ = model(input_ids)     <span style="color:#7f8c8d"># [batch, seq_len, vocab_size]</span>
+
+<span style="color:#7f8c8d"># 2. Shift: comparar predição[i] com alvo[i+1]</span>
+targets = input_ids[:, <span style="color:#3498db">1</span>:]       <span style="color:#7f8c8d"># O que realmente aconteceu</span>
+preds   = logits[:, :-<span style="color:#3498db">1</span>, :]     <span style="color:#7f8c8d"># O que o modelo previu</span>
+
+<span style="color:#7f8c8d"># 3. Calcular Top-K predições mais prováveis</span>
+probs = torch.softmax(preds, dim=-<span style="color:#3498db">1</span>)
+_, topk_inds = torch.topk(probs, K, dim=-<span style="color:#3498db">1</span>)
+
+<span style="color:#7f8c8d"># 4. Verificar se o evento REAL está no Top-K</span>
+matches = (topk_inds == targets.unsqueeze(-<span style="color:#3498db">1</span>)).any(dim=-<span style="color:#3498db">1</span>)
+
+<span style="color:#7f8c8d"># 5. Anomalia = evento NÃO está no Top-K (e não é padding)</span>
+valid_anomalies = (~matches) & target_mask
+
+<span style="color:#7f8c8d"># 6. Sessão inteira é anômala se QUALQUER evento for</span>
+is_anomalous = valid_anomalies.any(dim=<span style="color:#3498db">1</span>)</pre>
+
+<h4>Cálculo de Lead Time — Código com Timestamps Reais</h4>
+<p>O lead time é calculado usando timestamps com resolução de microssegundos:</p>
+<pre style="background:rgba(0,0,0,.3);padding:20px;border-radius:8px;overflow-x:auto;font-size:12px;color:#e0e0e0;font-family:'Fira Code',monospace"><span style="color:#7f8c8d"># Lead Time = Timestamp do 1º Erro Real − Timestamp da Detecção</span>
+<span style="color:#7f8c8d"># Positivo → modelo ANTECIPOU a falha</span>
+<span style="color:#7f8c8d"># Negativo → modelo detectou DEPOIS (reativo)</span>
+
+<span style="color:#e74c3c">if</span> pred_label == <span style="color:#3498db">1</span> <span style="color:#e74c3c">and</span> first_error_timestamp <span style="color:#e74c3c">is not None</span>:
+    <span style="color:#7f8c8d"># Mapear o passo Top-K para timestamp real do evento</span>
+    alert_ts = pd.to_datetime(session_timestamps[first_anomaly_step])
+    error_ts = pd.to_datetime(first_error_timestamp)
+    
+    <span style="color:#7f8c8d"># Diferença em segundos (positivo = antecipação)</span>
+    lead_time_seconds = (error_ts - alert_ts).total_seconds()
+    lead_time_minutes = lead_time_seconds / <span style="color:#3498db">60.0</span></pre>
+
+<div class="note">
+💡 <strong>Por que timestamps reais?</strong> Inicialmente o lead time era medido em número de eventos ("o modelo detectou 5 eventos antes do erro"). Porém, isso não diz quanto TEMPO o operador teria para reagir. Com timestamps reais, sabemos que no OpenStack a antecipação média é de <strong>3.8 minutos</strong> e no HDFS de até <strong>15 horas</strong>.
+</div>
+
+<h4>Justificativa das Métricas Escolhidas</h4>
+<table>
+<tr><th>Métrica</th><th>Por que usamos</th><th>Limitação</th></tr>
+<tr><td><strong>F1-Score</strong></td><td>Métrica principal. É a média harmônica de Precision e Recall — penaliza modelos que sacrificam um pelo outro. Essencial quando os datasets são desbalanceados (mais sessões normais que anômalas).</td><td>Não captura a distribuição dos erros — um F1 de 90% pode esconder que o modelo erra sempre no mesmo tipo de falha.</td></tr>
+<tr><td><strong>Precision</strong></td><td>Crucial em produção: um sistema com baixa precision gera "fadiga de alertas" — operadores ignoram alarmes quando muitos são falsos.</td><td>Alta precision com baixo recall significa que falhas reais estão passando despercebidas.</td></tr>
+<tr><td><strong>Recall</strong></td><td>Mede a capacidade do modelo de encontrar TODAS as falhas. Em sistemas críticos (como um supercomputador), perder uma falha pode ser catastrófico.</td><td>100% de recall é fácil de atingir: basta alertar tudo (como o BGL fez com precision de 48.9%).</td></tr>
+<tr><td><strong>Lead Time</strong></td><td>Diferencial do LogGPT: não apenas DETECTA anomalias, mas ANTECIPA. Mede o tempo real entre a detecção e o primeiro erro — quanto maior, mais tempo para reagir.</td><td>Depende da resolução temporal dos timestamps. Datasets com timestamps imprecisos (ex: apenas data sem hora) impossibilitam cálculos granulares.</td></tr>
+<tr><td><strong>Confusion Matrix</strong></td><td>Visualização completa de TP/TN/FP/FN. Permite entender exatamente ONDE o modelo erra — crucial para debugging e melhoria.</td><td>Não captura a severidade dos erros — um FP em uma sessão de teste é diferente de um FP em produção.</td></tr>
+</table>
 </section>
 
 <!-- 3. DATASETS -->
