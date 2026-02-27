@@ -167,7 +167,48 @@ def build_html(c_metrics, c_cm, c_radar, c_lt, c_tmpl, c_pipe, OS, HD, BG):
 <tr><td><strong>SEED</strong></td><td colspan="2"><code>42</code></td><td>Semente fixa para reprodutibilidade total dos experimentos.</td></tr>
 </table>
 
-<h4>Arquitetura do Modelo — LogGPT Small</h4>
+<h4>1. Processamento de Dados e Tokenização (Polars e HuggingFace)</h4>
+<p>O processamento de logs brutos em tensores para a GPU é feito em duas etapas. Primeiro, usamos a biblioteca <strong>Polars</strong> (por sua velocidade e processamento multi-core em Rust) para agrupar milhões de linhas de log em "sessões". No OpenStack, agrupamos por <code>test_id</code> e concatenamos os <code>EventId</code> com espaços:</p>
+<pre style="background:rgba(0,0,0,.3);padding:20px;border-radius:8px;overflow-x:auto;font-size:12px;color:#e0e0e0;font-family:'Fira Code',monospace"><span style="color:#7f8c8d"># dataset.py — Agrupamento de Sessões com Polars</span>
+sessions = (
+    df.sort(<span style="color:#27ae60">"timestamp"</span>)
+    .group_by(<span style="color:#27ae60">"test_id"</span>)
+    .agg([
+        pl.col(LOG_COLUMN),
+        pl.col(<span style="color:#27ae60">"anom_label"</span>).max().alias(<span style="color:#27ae60">"label"</span>) <span style="color:#7f8c8d"># Se 1 log for anômalo, a sessão inteira é</span>
+    ])
+).with_columns(
+    <span style="color:#7f8c8d"># Resultado: "E1 E2 E5 E1 E3..."</span>
+    pl.col(LOG_COLUMN).list.join(<span style="color:#27ae60">" "</span>).alias(<span style="color:#27ae60">"EventTemplate"</span>)
+)</pre>
+
+<p>Em seguida, transformamos as strings em tensores PyTorch usando o Tokenizer do HuggingFace. Para otimizar memória no treinamento de batches com tamanhos de sessão variados, usamos uma função de colação (<code>collate_fn</code>) que faz <strong>Dynamic Padding</strong> na CPU antes de enviar para a GPU:</p>
+<pre style="background:rgba(0,0,0,.3);padding:20px;border-radius:8px;overflow-x:auto;font-size:12px;color:#e0e0e0;font-family:'Fira Code',monospace"><span style="color:#7f8c8d"># dataset.py — Dynamic Padding para batches de tamanho variável</span>
+<span style="color:#e74c3c">def</span> <span style="color:#3498db">collate_fn</span>(batch):
+    max_len = max(len(x) <span style="color:#e74c3c">for</span> x <span style="color:#e74c3c">in</span> batch)
+    <span style="color:#7f8c8d"># Preenche com PAD_TOKEN (50256 no GPT2) até o maior log do batch atual</span>
+    padded = torch.full((len(batch), max_len), <span style="color:#3498db">50256</span>, dtype=torch.long)
+    <span style="color:#e74c3c">for</span> i, x <span style="color:#e74c3c">in</span> enumerate(batch):
+        padded[i, :len(x)] = x
+    <span style="color:#e74c3c">return</span> padded</pre>
+
+<h4>2. Treinamento Causal LM (PyTorch)</h4>
+<p>O treinamento do modelo não usa labels binários (0 ou 1) de anomalia. O modelo é treinado de forma auto-supervisionada (apenas em dados normais) usando <strong>Teacher Forcing</strong>: dado um contexto de N tokens, deve prever o token N+1. Isso é feito através do deslocamento de matrizes (<em>shift</em>):</p>
+<pre style="background:rgba(0,0,0,.3);padding:20px;border-radius:8px;overflow-x:auto;font-size:12px;color:#e0e0e0;font-family:'Fira Code',monospace"><span style="color:#7f8c8d"># train_custom.py — Loop de treinamento (Causal LM Shift)</span>
+<span style="color:#e74c3c">def</span> <span style="color:#3498db">train_epoch</span>(model, loader, optimizer, device, epoch):
+    model.train()
+    <span style="color:#e74c3c">for</span> batch <span style="color:#e74c3c">in</span> loader:
+        <span style="color:#7f8c8d"># Causal shift: alvo é a entrada deslocada de 1 posição para a direita</span>
+        inp = batch[:, :-<span style="color:#3498db">1</span>].to(device)  <span style="color:#7f8c8d"># Contexto (T_0 até T_N-1)</span>
+        tgt = batch[:, <span style="color:#3498db">1</span>:].to(device)   <span style="color:#7f8c8d"># Alvo a prever (T_1 até T_N)</span>
+        
+        logits, loss = model(inp, targets=tgt)
+        
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step() <span style="color:#7f8c8d"># AdamW Optimizer com weight decay automático</span></pre>
+
+<h4>3. Arquitetura do Modelo — LogGPT Small</h4>
 <p>O modelo usa uma arquitetura GPT-2 customizada ("LogGPT-Small") com as seguintes especificações:</p>
 <pre style="background:rgba(0,0,0,.3);padding:20px;border-radius:8px;overflow-x:auto;font-size:12px;color:#e0e0e0;font-family:'Fira Code',monospace"><span style="color:#7f8c8d"># model.py — Definição do modelo</span>
 <span style="color:#e74c3c">class</span> <span style="color:#f39c12">LogGPT</span>(nn.Module):
