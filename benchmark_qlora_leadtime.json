@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Phi-3.5-mini",
+    "f1": 0.9205479452054794,
+    "precision": 0.8571428571428571,
+    "recall": 0.9940828402366864,
+    "tp": 168,
+    "fp": 28,
+    "fn": 1,
+    "tn": 0,
+    "train_time_s": 157.34984636306763,
+    "threshold": 7.27052128074145,
+    "total_tp": 168,
+    "lt_available": 0,
+    "lt_anticipated": 0,
+    "lt_simultaneous": 0,
+    "lt_reactive": 0,
+    "lt_anticipated_pct": 0.0,
+    "avg_leadtime_s": 0,
+    "avg_leadtime_anticipated_s": 0
+  }
+]

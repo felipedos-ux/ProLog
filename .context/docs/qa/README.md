@@ -1,8 +1,8 @@
 # Q&A Index
 
-Project type: **unknown**
+Project type: **library**
 
-Generated: 2026-02-13T23:42:24.060Z
+Generated: 2026-03-14T22:58:10.717Z
 
 ## Getting-started
 
@@ -14,4 +14,5 @@ Generated: 2026-02-13T23:42:24.060Z
 
 ## Features
 
-- [How does authentication work?](./authentication.md)
+- [How is data stored and accessed?](./database.md)
+- [What API endpoints are available?](./api-endpoints.md)

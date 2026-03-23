@@ -1,0 +1,63 @@
+{
+  "experiment_id": "H",
+  "name": "Extended Context SOTA",
+  "description": "Phase 2: Regex Minimo + Block Size 1024 + Adaptive Threshold (k=2.5)",
+  "config": {
+    "arch": {
+      "name": "large_context_256d",
+      "n_layer": 4,
+      "n_head": 4,
+      "n_embd": 256,
+      "block_size": 1024,
+      "batch_size": 16
+    },
+    "detection": "threshold",
+    "deduplicate": false,
+    "use_rl": false
+  },
+  "timestamp": "2026-03-14T22:32:19.392134",
+  "training": {
+    "phase": "pretraining",
+    "epochs_run": 21,
+    "best_val_loss": 0.0725,
+    "train_time_seconds": 7187.4,
+    "param_count_M": 29.2,
+    "data_meta": {
+      "total_rows_loaded": 97726,
+      "unique_templates": 4598,
+      "sessions_used": 5000,
+      "total_chunks": 2246
+    }
+  },
+  "metrics": {
+    "f1": 0.8712,
+    "precision": 0.9686,
+    "recall": 0.7915,
+    "accuracy": 0.779,
+    "tp": 13328,
+    "fp": 432,
+    "fn": 3510,
+    "tn": 568,
+    "confusion_matrix": [
+      [
+        568,
+        432
+      ],
+      [
+        3510,
+        13328
+      ]
+    ],
+    "detection_method": "threshold",
+    "threshold": 0.21,
+    "eval_time_seconds": 530.1,
+    "sessions_evaluated": 17838,
+    "lead_time": {
+      "anticipated_count": 8330,
+      "avg_minutes": 0.0,
+      "max_minutes": 0.0,
+      "median_minutes": 0.0
+    }
+  },
+  "total_time_seconds": 7757.9
+}

@@ -120,14 +120,14 @@ def build_html(c_metrics, c_cm, c_radar, c_lt, c_tmpl, c_pipe, OS, HD, BG):
 <p>Uma sessão vira uma sequência de EventIds: <code>"e17b68d6 96691030 f7725eaf b8be6124"</code></p>
 </div>
 
-<div class="step-box"><h4>Etapa 4 — Treinamento do Modelo (Causal LM)</h4>
-<p>O modelo GPT-2 é treinado <strong>apenas em sessões normais</strong> (sem falha). Ele aprende a prever "qual será o próximo evento?" dado o contexto anterior. Após o treino, ele sabe qual é o comportamento "normal" do sistema.</p>
+<div class="step-box"><h4>Etapa 4 — Isolamento e Treinamento (Causal LM)</h4>
+<p>O modelo GPT-2 é treinado <strong>exclusivamente em sessões normais</strong> (sem falha). Para garantir <strong>zero contaminação</strong>, aplicamos um filtro estrito (<code>label == 0</code>) diretamente nos rótulos da base Loghub antes da ingestão no PyTorch. O modelo aprende a prever "qual será o próximo evento?" dado o contexto anterior. Após o treino, ele sabe qual é o comportamento estritamente "saudável" do sistema, atuando de forma <em>zero-shot</em> para anomalias.</p>
 <p><strong>Bibliotecas:</strong> PyTorch, HuggingFace Transformers, Polars (processamento de dados), Scikit-learn (métricas).</p>
 </div>
 
-<div class="step-box"><h4>Etapa 5 — Detecção (Top-K)</h4>
-<p>Na fase de detecção, o modelo recebe cada sessão de teste e, para cada evento, verifica se o evento real está entre as <strong>Top-K predições mais prováveis</strong> (K=5). Se o evento real NÃO estiver no Top-5, o modelo marca aquele ponto como <strong>anômalo</strong>.</p>
-<p>Se qualquer ponto da sessão for anômalo, toda a sessão é classificada como anômala.</p>
+<div class="step-box"><h4>Etapa 5 — Detecção (Top-K) e Critério de Anomalia</h4>
+<p>Na fase de detecção, o modelo recebe cada sessão de teste e, para cada evento, verifica se o evento real está entre as <strong>Top-K predições mais prováveis</strong>. O valor <strong>K=5</strong> foi fixado seguindo o protocolo ótimo estabelecido por baselines (LogGPT/DeepLog), buscando equilibrar sensibilidade e especificidade. Valores de K muito baixos (ex: K=1) elevam drasticamente os falsos positivos, enquanto valores excessivos (K=10) perdoam demais, gerando falsos negativos em falhas sutis.</p>
+<p><strong>Critério de Sessão Anômala:</strong> Se o evento real não estiver no Top-5, ele é tido como anômalo. A regra de decisão da sessão é estrita: <em>se qualquer evento da sessão for anômalo, a sessão inteira é classificada como anômala</em>. Embora essa regra de "tolerância zero" seja restritiva para sessões extremamente longas (onde janelas avaliadas por porcentagem poderiam ser alternativas viáveis em sistemas menos voláteis), essa heurística é padrão e amplamente adequada em sistemas de missão crítica representados nas bases.</p>
 </div>
 
 <div class="step-box"><h4>Etapa 6 — Cálculo do Lead Time</h4>
@@ -166,6 +166,10 @@ def build_html(c_metrics, c_cm, c_radar, c_lt, c_tmpl, c_pipe, OS, HD, BG):
 <tr><td><strong>LOG_COLUMN</strong></td><td><code>EventId</code></td><td><code>EventTemplate</code></td><td>OpenStack usa o hash curto do EventId (1-2 tokens); HDFS usa o template completo. A escolha impacta a tokenização — EventId produz sequências mais compactas.</td></tr>
 <tr><td><strong>SEED</strong></td><td colspan="2"><code>42</code></td><td>Semente fixa para reprodutibilidade total dos experimentos.</td></tr>
 </table>
+
+<h4>Protocolo Experimental: Divisão de Dados e Variabilidade</h4>
+<p>Para prover uma comparação rigorosa e justa com os trabalhos correlatos, os datasets foram particionados com uma <strong>divisão aleatória baseada nos identificadores de sessão</strong> (como <code>test_id</code> ou <code>block_id</code>), via função <code>train_test_split</code> estratificada pelas matrizes normais, prevenindo o vazamento (data leakage). Aproximadamente 80% das sessões <strong>puramente normais</strong> são alocadas ao treinamento/validação, enquanto o conjunto de teste recebe o saldo restante somado a <strong>100% das sessões anômalas</strong> disponíveis. Isso desafia exaustivamente o modelo contra toda a variabilidade de falhas originadas no Loghub.</p>
+<p>Sobre a <strong>variabilidade estatística</strong> e repetição computacional: as rodadas de modelagem em LLMs (Large Language Models) incorreram em restrições de custo e tempo de GPU. Deste modo fixou-se todos os parâmetros estocásticos através da injeção de uma <em>seed</em> global (<code>SEED = 42</code>) englobando PyTorch, Numpy e o embaralhamento dos splits. Esta fixação endossa a reprodutibilidade metodológica — garantindo que a variação de precisão observada decorre da arquitetura da rede em si e não de flutuação de dados, similar ao protocolo reproduzível comumente sancionado nos baselines (DeepLog/LogBERT).</p>
 
 <h4>1. Processamento de Dados e Tokenização (Polars e HuggingFace)</h4>
 <p>O processamento de logs brutos em tensores para a GPU é feito em duas etapas. Primeiro, usamos a biblioteca <strong>Polars</strong> (por sua velocidade e processamento multi-core em Rust) para agrupar milhões de linhas de log em "sessões". No OpenStack, agrupamos por <code>test_id</code> e concatenamos os <code>EventId</code> com espaços:</p>
@@ -451,7 +455,7 @@ is_anomalous = valid_anomalies.any(dim=<span style="color:#3498db">1</span>)</pr
 </ul>
 
 <div class="warn">
-⚠️ <strong>Conclusão BGL:</strong> O insucesso no BGL não é apenas uma questão de re-treinamento. A abordagem Causal LM ("preveja o próximo evento na sequência") <strong>depende fundamentalmente de sessões com padrões sequenciais previsíveis</strong>. O BGL não possui essa propriedade — seus logs são agrupados por máquina física, não por operação lógica. Para datasets com essa estrutura, abordagens alternativas como <strong>frequência de templates por janela temporal</strong>, <strong>grafos de dependência de hardware</strong>, ou <strong>modelos de séries temporais</strong> seriam mais adequadas.
+⚠️ <strong>Conclusão BGL e Discrepância de Baselines:</strong> O insucesso no BGL extravasa uma mera questão de transferência de domínio de treinamento. A abordagem Causal LM iterativa modelando blocos lógicos <strong>depende invariavelmente da coesão do sequenciamento subjacente</strong>. O BGL abstém-se dessa coesão — sua rotulação orbita endereços físicos de roteadores, embaralhando de forma assintótica as falhas. Em contrapartida, avaliações na literatura como as consagradas em <strong>DeepLog e LogBERT</strong> frequentemente modelam o desempenho sob o BGL adotando moldes supervisionados diretos ou construindo matrizes deslizantes minunciosamente centradas no log avariado, conferindo previsibilidade pontual ao modelo. Dessa forma, as taxas de perfeição auferidas em tais obras não refletem o paradigma prático de zero-shot / transferência "1:1" (sem ver as anomalias) exploradas por nós. Para datasets intrinsecamente amorfos como o BGL, topologias alternativas, como mapeamento espacial em Grafos de Rede Crítica ou aprendizado profundo de séries temporais estritamente supervisionadas perfariam metodologias inquestionavelmente adaptadas e mais fidedignas do que a janela em linguagem natural.
 </div>
 </section>
 

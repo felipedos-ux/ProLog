@@ -1,0 +1,13 @@
+{
+  "source_file": "D:\\ProLog\\data\\HDFS\\HDFS_data_processed.csv",
+  "total_rows": 11175629,
+  "total_sessions": 575061,
+  "train_sessions": 5000,
+  "test_normal_sessions": 1000,
+  "test_anom_sessions": 16838,
+  "train_rows": 97743,
+  "test_rows": 307766,
+  "train_unique_templates": 15,
+  "test_unique_templates": 29,
+  "seed": 42
+}

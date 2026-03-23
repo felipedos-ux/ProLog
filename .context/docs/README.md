@@ -13,23 +13,28 @@ Welcome to the repository knowledge base. Start with the project overview, then 
 - [Tooling & Productivity Guide](./tooling.md)
 
 ## Repository Snapshot
-- `01_baseline_hmm/`
-- `02_loggpt_small/`
-- `03_tinyllama/`
-- `04_loggpt_bgl/`
-- `05_loggpt_large_bgl/`
-- `06_gpt2_large_pretrained_bgl/`
-- `bgl_sliding_results.txt/`
-- `bgl_universal_results.txt/`
+- `01_OpenStack_Validated/`
+- `03_HDFS_Benchmark/`
+- `05_loggpt_bgl/`
+- `06_HDFS_Lab/`
+- `AGENTS.md/`
+- `benchmark_qlora_hdfs_results.json/`
+- `benchmark_qlora_hdfs.py/`
+- `benchmark_qlora_leadtime.json/`
+- `benchmark_qlora_leadtime.py/`
+- `benchmark_qlora_results.json/`
+- `benchmark_qlora.py/`
+- `benchmark_tokenizer_results.json/`
+- `benchmark_tokenizers.py/`
 - `data/`
-- `debug_output.txt/`
-- `eval_bgl_sliding.py/`
-- `preprocess_bgl_sliding.py/`
+- `detect_comparison.py/`
+- `detection_comparison_results.json/`
+- `docs/` — Living documentation produced by this tool.
+- `hdfs_leadtime_phi-3.5-mini.json/`
+- `leadtime_details_phi-3.5-mini.json/`
+- `output_comparison.txt/`
 - `README.md/`
 - `reports/`
-- `requirements.txt/`
-- `run_bgl_eval.py/`
-- `universal_detector/`
 
 ## Document Map
 | Guide | File | Primary Inputs |

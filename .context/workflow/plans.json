@@ -1,0 +1,22 @@
+{
+  "active": [
+    {
+      "slug": "otimizacoes-sota",
+      "path": "plans/otimizacoes-sota.md",
+      "title": "Implementação Otimizações SOTA (Parser-Free)",
+      "summary": "Implementar as técnicas do estado da arte (Regex Mínimo, Threshold Adaptativo, Contrastive Learning) levantadas no Relatório de Implementação para evoluir as métricas do HDFS model (F1 de 0.86 para 0.95+).",
+      "linkedAt": "2026-03-15T12:01:57.794Z",
+      "status": "active"
+    },
+    {
+      "slug": "final-hdfs-implementation",
+      "path": "plans/final-hdfs-implementation.md",
+      "title": "Final HDFS Optimization",
+      "summary": "Execução Final do Laboratório HDFS englobando Phase 3 e Phase 4 utilizando a Metodologia AI-Context.",
+      "linkedAt": "2026-03-15T12:02:56.129Z",
+      "status": "active"
+    }
+  ],
+  "completed": [],
+  "primary": "otimizacoes-sota"
+}

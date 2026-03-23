@@ -1,0 +1,61 @@
+{
+  "experiment_id": "G",
+  "name": "Regex M\u00ednimo SOTA",
+  "description": "Phase 1 Otimiza\u00e7\u00f5es: Regex Minimo + Treino Normal + Threshold",
+  "config": {
+    "arch": {
+      "name": "default_256d",
+      "n_layer": 4,
+      "n_head": 4,
+      "n_embd": 256
+    },
+    "detection": "threshold",
+    "deduplicate": false,
+    "use_rl": false
+  },
+  "timestamp": "2026-03-14T21:49:29.628016",
+  "training": {
+    "phase": "pretraining",
+    "epochs_run": 23,
+    "best_val_loss": 0.0821,
+    "train_time_seconds": 753.6,
+    "param_count_M": 28.98,
+    "data_meta": {
+      "total_rows_loaded": 97726,
+      "unique_templates": 4598,
+      "sessions_used": 5000,
+      "total_chunks": 17985
+    }
+  },
+  "metrics": {
+    "f1": 0.8769,
+    "precision": 0.9613,
+    "recall": 0.8062,
+    "accuracy": 0.7864,
+    "tp": 13574,
+    "fp": 547,
+    "fn": 3264,
+    "tn": 453,
+    "confusion_matrix": [
+      [
+        453,
+        547
+      ],
+      [
+        3264,
+        13574
+      ]
+    ],
+    "detection_method": "threshold",
+    "threshold": 0.1821,
+    "eval_time_seconds": 446.2,
+    "sessions_evaluated": 17838,
+    "lead_time": {
+      "anticipated_count": 8970,
+      "avg_minutes": 0.0,
+      "max_minutes": 0.0,
+      "median_minutes": 0.0
+    }
+  },
+  "total_time_seconds": 1262.8
+}

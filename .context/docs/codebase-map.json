@@ -1,0 +1,821 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-03-14T22:58:10.545Z",
+  "stack": {
+    "primaryLanguage": "python",
+    "languages": [
+      "python"
+    ],
+    "frameworks": [],
+    "buildTools": [],
+    "testFrameworks": [],
+    "packageManager": null,
+    "isMonorepo": false,
+    "hasDocker": false,
+    "hasCI": false
+  },
+  "structure": {
+    "totalFiles": 284,
+    "rootPath": ".",
+    "topDirectories": [
+      {
+        "name": "01_OpenStack_Validated",
+        "fileCount": 39,
+        "description": "Module directory"
+      },
+      {
+        "name": "03_HDFS_Benchmark",
+        "fileCount": 42,
+        "description": "Module directory"
+      },
+      {
+        "name": "05_loggpt_bgl",
+        "fileCount": 25,
+        "description": "Module directory"
+      },
+      {
+        "name": "06_HDFS_Lab",
+        "fileCount": 45,
+        "description": "Module directory"
+      },
+      {
+        "name": "data",
+        "fileCount": 109,
+        "description": "Module directory"
+      },
+      {
+        "name": "docs",
+        "fileCount": 5,
+        "description": "Documentation files"
+      },
+      {
+        "name": "reports",
+        "fileCount": 4,
+        "description": "Report definitions"
+      }
+    ],
+    "languageDistribution": [
+      {
+        "extension": ".csv",
+        "count": 64
+      },
+      {
+        "extension": ".py",
+        "count": 47
+      },
+      {
+        "extension": ".md",
+        "count": 35
+      },
+      {
+        "extension": ".pyc",
+        "count": 33
+      },
+      {
+        "extension": ".json",
+        "count": 32
+      },
+      {
+        "extension": ".log",
+        "count": 21
+      },
+      {
+        "extension": ".html",
+        "count": 20
+      },
+      {
+        "extension": ".pt",
+        "count": 19
+      },
+      {
+        "extension": ".txt",
+        "count": 4
+      },
+      {
+        "extension": ".parquet",
+        "count": 3
+      }
+    ]
+  },
+  "architecture": {
+    "layers": [
+      {
+        "name": "Models",
+        "description": "Data structures and domain objects",
+        "directories": [
+          "06_HDFS_Lab",
+          "05_loggpt_bgl",
+          "03_HDFS_Benchmark",
+          "01_OpenStack_Validated"
+        ],
+        "symbolCount": 20,
+        "dependsOn": []
+      },
+      {
+        "name": "Repositories",
+        "description": "Data access and persistence",
+        "directories": [
+          "06_HDFS_Lab",
+          "05_loggpt_bgl",
+          "03_HDFS_Benchmark",
+          "01_OpenStack_Validated"
+        ],
+        "symbolCount": 12,
+        "dependsOn": []
+      },
+      {
+        "name": "Config",
+        "description": "Configuration and constants",
+        "directories": [
+          "06_HDFS_Lab",
+          "05_loggpt_bgl",
+          "03_HDFS_Benchmark",
+          "01_OpenStack_Validated"
+        ],
+        "symbolCount": 4,
+        "dependsOn": []
+      },
+      {
+        "name": "Utils",
+        "description": "Shared utilities and helpers",
+        "directories": [
+          "06_HDFS_Lab\\utils",
+          "05_loggpt_bgl\\utils",
+          "03_HDFS_Benchmark\\utils",
+          "01_OpenStack_Validated\\utils"
+        ],
+        "symbolCount": 4,
+        "dependsOn": []
+      }
+    ],
+    "patterns": [
+      {
+        "name": "Observer",
+        "confidence": 0.75,
+        "description": "Defines a subscription mechanism to notify multiple objects",
+        "occurrences": 4
+      }
+    ],
+    "entryPoints": [],
+    "mainEntryPoints": [],
+    "moduleExports": []
+  },
+  "symbols": {
+    "classes": [
+      {
+        "name": "Block",
+        "kind": "class",
+        "file": "benchmark_tokenizers.py",
+        "line": 90,
+        "exported": true
+      },
+      {
+        "name": "Block",
+        "kind": "class",
+        "file": "06_HDFS_Lab\\model.py",
+        "line": 58,
+        "exported": true
+      },
+      {
+        "name": "Block",
+        "kind": "class",
+        "file": "05_loggpt_bgl\\model.py",
+        "line": 59,
+        "exported": true
+      },
+      {
+        "name": "Block",
+        "kind": "class",
+        "file": "03_HDFS_Benchmark\\model.py",
+        "line": 52,
+        "exported": true
+      },
+      {
+        "name": "Block",
+        "kind": "class",
+        "file": "01_OpenStack_Validated\\model.py",
+        "line": 59,
+        "exported": true
+      },
+      {
+        "name": "CausalSelfAttention",
+        "kind": "class",
+        "file": "benchmark_tokenizers.py",
+        "line": 52,
+        "exported": true
+      },
+      {
+        "name": "CausalSelfAttention",
+        "kind": "class",
+        "file": "06_HDFS_Lab\\model.py",
+        "line": 11,
+        "exported": true
+      },
+      {
+        "name": "CausalSelfAttention",
+        "kind": "class",
+        "file": "05_loggpt_bgl\\model.py",
+        "line": 7,
+        "exported": true
+      },
+      {
+        "name": "CausalSelfAttention",
+        "kind": "class",
+        "file": "03_HDFS_Benchmark\\model.py",
+        "line": 7,
+        "exported": true
+      },
+      {
+        "name": "CausalSelfAttention",
+        "kind": "class",
+        "file": "01_OpenStack_Validated\\model.py",
+        "line": 7,
+        "exported": true
+      },
+      {
+        "name": "EventTokenizer",
+        "kind": "class",
+        "file": "01_OpenStack_Validated\\event_tokenizer.py",
+        "line": 19,
+        "exported": true
+      },
+      {
+        "name": "GPTConfig",
+        "kind": "class",
+        "file": "benchmark_tokenizers.py",
+        "line": 42,
+        "exported": true
+      },
+      {
+        "name": "GPTConfig",
+        "kind": "class",
+        "file": "06_HDFS_Lab\\model.py",
+        "line": 72,
+        "exported": true
+      },
+      {
+        "name": "GPTConfig",
+        "kind": "class",
+        "file": "05_loggpt_bgl\\model.py",
+        "line": 72,
+        "exported": true
+      },
+      {
+        "name": "GPTConfig",
+        "kind": "class",
+        "file": "03_HDFS_Benchmark\\model.py",
+        "line": 65,
+        "exported": true
+      },
+      {
+        "name": "GPTConfig",
+        "kind": "class",
+        "file": "01_OpenStack_Validated\\model.py",
+        "line": 72,
+        "exported": true
+      },
+      {
+        "name": "LogDataset",
+        "kind": "class",
+        "file": "05_loggpt_bgl\\train_count.py",
+        "line": 25,
+        "exported": true
+      },
+      {
+        "name": "LogGPT",
+        "kind": "class",
+        "file": "benchmark_tokenizers.py",
+        "line": 102,
+        "exported": true
+      },
+      {
+        "name": "LogGPT",
+        "kind": "class",
+        "file": "06_HDFS_Lab\\model.py",
+        "line": 82,
+        "exported": true
+      },
+      {
+        "name": "LogGPT",
+        "kind": "class",
+        "file": "05_loggpt_bgl\\model.py",
+        "line": 81,
+        "exported": true
+      },
+      {
+        "name": "LogGPT",
+        "kind": "class",
+        "file": "03_HDFS_Benchmark\\model.py",
+        "line": 74,
+        "exported": true
+      },
+      {
+        "name": "LogGPT",
+        "kind": "class",
+        "file": "01_OpenStack_Validated\\model.py",
+        "line": 81,
+        "exported": true
+      },
+      {
+        "name": "LogSessionDataset",
+        "kind": "class",
+        "file": "benchmark_tokenizers.py",
+        "line": 197,
+        "exported": true
+      },
+      {
+        "name": "LogSessionDataset",
+        "kind": "class",
+        "file": "benchmark_qlora_leadtime.py",
+        "line": 66,
+        "exported": true
+      },
+      {
+        "name": "LogSessionDataset",
+        "kind": "class",
+        "file": "benchmark_qlora_hdfs.py",
+        "line": 148,
+        "exported": true
+      },
+      {
+        "name": "LogSessionDataset",
+        "kind": "class",
+        "file": "benchmark_qlora.py",
+        "line": 116,
+        "exported": true
+      },
+      {
+        "name": "LogSessionDataset",
+        "kind": "class",
+        "file": "01_OpenStack_Validated\\dataset.py",
+        "line": 14,
+        "exported": true
+      },
+      {
+        "name": "MetricsDashboardHandler",
+        "kind": "class",
+        "file": "03_HDFS_Benchmark\\simulate_realtime_hdfs.py",
+        "line": 393,
+        "exported": true
+      },
+      {
+        "name": "MetricsDashboardHandler",
+        "kind": "class",
+        "file": "01_OpenStack_Validated\\simulate_realtime.py",
+        "line": 403,
+        "exported": true
+      },
+      {
+        "name": "MLP",
+        "kind": "class",
+        "file": "benchmark_tokenizers.py",
+        "line": 80,
+        "exported": true
+      }
+    ],
+    "interfaces": [],
+    "functions": [
+      {
+        "name": "analyze_lead_time",
+        "kind": "function",
+        "file": "03_HDFS_Benchmark\\generate_advanced_report_hdfs.py",
+        "line": 14,
+        "exported": true
+      },
+      {
+        "name": "b64",
+        "kind": "function",
+        "file": "docs\\generate_tcc_report.py",
+        "line": 20,
+        "exported": true
+      },
+      {
+        "name": "build_html",
+        "kind": "function",
+        "file": "docs\\tcc_report_template.py",
+        "line": 4,
+        "exported": true
+      },
+      {
+        "name": "build_tokenizer_from_training_data",
+        "kind": "function",
+        "file": "01_OpenStack_Validated\\event_tokenizer.py",
+        "line": 115,
+        "exported": true
+      },
+      {
+        "name": "calculate_dynamic_k",
+        "kind": "function",
+        "file": "06_HDFS_Lab\\detect_topk.py",
+        "line": 30,
+        "exported": true
+      },
+      {
+        "name": "calculate_lead_time_metrics",
+        "kind": "function",
+        "file": "01_OpenStack_Validated\\generate_advanced_report.py",
+        "line": 44,
+        "exported": true
+      },
+      {
+        "name": "calibrate_threshold",
+        "kind": "function",
+        "file": "benchmark_qlora_hdfs.py",
+        "line": 189,
+        "exported": true
+      },
+      {
+        "name": "calibrate_threshold",
+        "kind": "function",
+        "file": "benchmark_qlora.py",
+        "line": 218,
+        "exported": true
+      },
+      {
+        "name": "calibrate_threshold",
+        "kind": "function",
+        "file": "06_HDFS_Lab\\detect_threshold.py",
+        "line": 28,
+        "exported": true
+      },
+      {
+        "name": "calibrate_threshold_on_val",
+        "kind": "function",
+        "file": "detect_comparison.py",
+        "line": 55,
+        "exported": true
+      },
+      {
+        "name": "chart_confusion_matrices",
+        "kind": "function",
+        "file": "docs\\generate_tcc_report.py",
+        "line": 75,
+        "exported": true
+      },
+      {
+        "name": "chart_f1_radar",
+        "kind": "function",
+        "file": "docs\\generate_tcc_report.py",
+        "line": 87,
+        "exported": true
+      },
+      {
+        "name": "chart_leadtime",
+        "kind": "function",
+        "file": "docs\\generate_tcc_report.py",
+        "line": 103,
+        "exported": true
+      },
+      {
+        "name": "chart_metrics_comparison",
+        "kind": "function",
+        "file": "docs\\generate_tcc_report.py",
+        "line": 59,
+        "exported": true
+      },
+      {
+        "name": "chart_pipeline",
+        "kind": "function",
+        "file": "docs\\generate_tcc_report.py",
+        "line": 134,
+        "exported": true
+      },
+      {
+        "name": "chart_template_diversity",
+        "kind": "function",
+        "file": "docs\\generate_tcc_report.py",
+        "line": 122,
+        "exported": true
+      },
+      {
+        "name": "collate_fn",
+        "kind": "function",
+        "file": "05_loggpt_bgl\\train_count.py",
+        "line": 54,
+        "exported": true
+      },
+      {
+        "name": "collate_fn",
+        "kind": "function",
+        "file": "01_OpenStack_Validated\\detect_custom.py",
+        "line": 75,
+        "exported": true
+      },
+      {
+        "name": "collate_fn",
+        "kind": "function",
+        "file": "01_OpenStack_Validated\\dataset.py",
+        "line": 50,
+        "exported": true
+      },
+      {
+        "name": "collate_session",
+        "kind": "function",
+        "file": "detect_comparison.py",
+        "line": 101,
+        "exported": true
+      },
+      {
+        "name": "collate_test",
+        "kind": "function",
+        "file": "benchmark_tokenizers.py",
+        "line": 240,
+        "exported": true
+      },
+      {
+        "name": "collate_test",
+        "kind": "function",
+        "file": "benchmark_qlora.py",
+        "line": 159,
+        "exported": true
+      },
+      {
+        "name": "collate_test_meta",
+        "kind": "function",
+        "file": "benchmark_qlora_leadtime.py",
+        "line": 104,
+        "exported": true
+      },
+      {
+        "name": "collate_train",
+        "kind": "function",
+        "file": "benchmark_tokenizers.py",
+        "line": 232,
+        "exported": true
+      },
+      {
+        "name": "collate_train",
+        "kind": "function",
+        "file": "benchmark_qlora_leadtime.py",
+        "line": 96,
+        "exported": true
+      },
+      {
+        "name": "collate_train",
+        "kind": "function",
+        "file": "benchmark_qlora_hdfs.py",
+        "line": 160,
+        "exported": true
+      },
+      {
+        "name": "collate_train",
+        "kind": "function",
+        "file": "benchmark_qlora.py",
+        "line": 151,
+        "exported": true
+      },
+      {
+        "name": "compute_session_ce",
+        "kind": "function",
+        "file": "benchmark_qlora_hdfs.py",
+        "line": 171,
+        "exported": true
+      },
+      {
+        "name": "compute_session_losses",
+        "kind": "function",
+        "file": "benchmark_qlora.py",
+        "line": 184,
+        "exported": true
+      },
+      {
+        "name": "create_subsets",
+        "kind": "function",
+        "file": "06_HDFS_Lab\\data_sampler.py",
+        "line": 20,
+        "exported": true
+      }
+    ],
+    "types": [],
+    "enums": []
+  },
+  "publicAPI": [
+    {
+      "name": "analyze_lead_time",
+      "kind": "function",
+      "file": "03_HDFS_Benchmark\\generate_advanced_report_hdfs.py",
+      "line": 14,
+      "exported": true
+    },
+    {
+      "name": "b64",
+      "kind": "function",
+      "file": "docs\\generate_tcc_report.py",
+      "line": 20,
+      "exported": true
+    },
+    {
+      "name": "Block",
+      "kind": "class",
+      "file": "benchmark_tokenizers.py",
+      "line": 90,
+      "exported": true
+    },
+    {
+      "name": "Block",
+      "kind": "class",
+      "file": "06_HDFS_Lab\\model.py",
+      "line": 58,
+      "exported": true
+    },
+    {
+      "name": "Block",
+      "kind": "class",
+      "file": "05_loggpt_bgl\\model.py",
+      "line": 59,
+      "exported": true
+    },
+    {
+      "name": "Block",
+      "kind": "class",
+      "file": "03_HDFS_Benchmark\\model.py",
+      "line": 52,
+      "exported": true
+    },
+    {
+      "name": "Block",
+      "kind": "class",
+      "file": "01_OpenStack_Validated\\model.py",
+      "line": 59,
+      "exported": true
+    },
+    {
+      "name": "build_html",
+      "kind": "function",
+      "file": "docs\\tcc_report_template.py",
+      "line": 4,
+      "exported": true
+    },
+    {
+      "name": "build_tokenizer_from_training_data",
+      "kind": "function",
+      "file": "01_OpenStack_Validated\\event_tokenizer.py",
+      "line": 115,
+      "exported": true
+    },
+    {
+      "name": "calculate_dynamic_k",
+      "kind": "function",
+      "file": "06_HDFS_Lab\\detect_topk.py",
+      "line": 30,
+      "exported": true
+    },
+    {
+      "name": "calculate_lead_time_metrics",
+      "kind": "function",
+      "file": "01_OpenStack_Validated\\generate_advanced_report.py",
+      "line": 44,
+      "exported": true
+    },
+    {
+      "name": "calibrate_threshold",
+      "kind": "function",
+      "file": "benchmark_qlora_hdfs.py",
+      "line": 189,
+      "exported": true
+    },
+    {
+      "name": "calibrate_threshold",
+      "kind": "function",
+      "file": "benchmark_qlora.py",
+      "line": 218,
+      "exported": true
+    },
+    {
+      "name": "calibrate_threshold",
+      "kind": "function",
+      "file": "06_HDFS_Lab\\detect_threshold.py",
+      "line": 28,
+      "exported": true
+    },
+    {
+      "name": "calibrate_threshold_on_val",
+      "kind": "function",
+      "file": "detect_comparison.py",
+      "line": 55,
+      "exported": true
+    },
+    {
+      "name": "CausalSelfAttention",
+      "kind": "class",
+      "file": "benchmark_tokenizers.py",
+      "line": 52,
+      "exported": true
+    },
+    {
+      "name": "CausalSelfAttention",
+      "kind": "class",
+      "file": "06_HDFS_Lab\\model.py",
+      "line": 11,
+      "exported": true
+    },
+    {
+      "name": "CausalSelfAttention",
+      "kind": "class",
+      "file": "05_loggpt_bgl\\model.py",
+      "line": 7,
+      "exported": true
+    },
+    {
+      "name": "CausalSelfAttention",
+      "kind": "class",
+      "file": "03_HDFS_Benchmark\\model.py",
+      "line": 7,
+      "exported": true
+    },
+    {
+      "name": "CausalSelfAttention",
+      "kind": "class",
+      "file": "01_OpenStack_Validated\\model.py",
+      "line": 7,
+      "exported": true
+    },
+    {
+      "name": "chart_confusion_matrices",
+      "kind": "function",
+      "file": "docs\\generate_tcc_report.py",
+      "line": 75,
+      "exported": true
+    },
+    {
+      "name": "chart_f1_radar",
+      "kind": "function",
+      "file": "docs\\generate_tcc_report.py",
+      "line": 87,
+      "exported": true
+    },
+    {
+      "name": "chart_leadtime",
+      "kind": "function",
+      "file": "docs\\generate_tcc_report.py",
+      "line": 103,
+      "exported": true
+    },
+    {
+      "name": "chart_metrics_comparison",
+      "kind": "function",
+      "file": "docs\\generate_tcc_report.py",
+      "line": 59,
+      "exported": true
+    },
+    {
+      "name": "chart_pipeline",
+      "kind": "function",
+      "file": "docs\\generate_tcc_report.py",
+      "line": 134,
+      "exported": true
+    },
+    {
+      "name": "chart_template_diversity",
+      "kind": "function",
+      "file": "docs\\generate_tcc_report.py",
+      "line": 122,
+      "exported": true
+    },
+    {
+      "name": "collate_fn",
+      "kind": "function",
+      "file": "05_loggpt_bgl\\train_count.py",
+      "line": 54,
+      "exported": true
+    },
+    {
+      "name": "collate_fn",
+      "kind": "function",
+      "file": "01_OpenStack_Validated\\detect_custom.py",
+      "line": 75,
+      "exported": true
+    },
+    {
+      "name": "collate_fn",
+      "kind": "function",
+      "file": "01_OpenStack_Validated\\dataset.py",
+      "line": 50,
+      "exported": true
+    },
+    {
+      "name": "collate_session",
+      "kind": "function",
+      "file": "detect_comparison.py",
+      "line": 101,
+      "exported": true
+    }
+  ],
+  "dependencies": {
+    "mostImported": []
+  },
+  "stats": {
+    "totalSymbols": 186,
+    "exportedSymbols": 186,
+    "analysisTimeMs": 83
+  },
+  "keyFiles": [],
+  "navigation": {
+    "tests": "src/**/*.test.ts",
+    "config": [],
+    "types": [],
+    "mainLogic": [
+      "src"
+    ]
+  }
+}

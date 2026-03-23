@@ -4,7 +4,9 @@ This directory contains plans for coordinating work across documentation and pla
 
 ## Plan Queue
 1. [Bglproductionoptimization](./bglproductionoptimization.md)
-2. [Siatimplementationplanmd](./siatimplementationplanmd.md)
+2. [Final Hdfs Implementation](./final-hdfs-implementation.md)
+3. [Otimizacoes Sota](./otimizacoes-sota.md)
+4. [Siatimplementationplanmd](./siatimplementationplanmd.md)
 
 ## How To Create Or Update Plans
 - Run "ai-context plan <name>" to scaffold a new plan template.

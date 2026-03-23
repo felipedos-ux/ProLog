@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Phi-3.5-mini",
+    "hf_id": "microsoft/Phi-3.5-mini-instruct",
+    "train_time_s": 231.94728875160217,
+    "best_val_loss": Infinity,
+    "threshold": 7.27052128074145,
+    "f1": 0.8951841359773371,
+    "precision": 0.8586956521739131,
+    "recall": 0.9349112426035503,
+    "tp": 158,
+    "fp": 26,
+    "fn": 11,
+    "tn": 2
+  },
+  {
+    "name": "Qwen2-7B",
+    "hf_id": "Qwen/Qwen2-7B",
+    "train_time_s": 3590.4505767822266,
+    "best_val_loss": Infinity,
+    "threshold": 9.348463106155396,
+    "f1": 0.9111111111111111,
+    "precision": 0.8586387434554974,
+    "recall": 0.9704142011834319,
+    "tp": 164,
+    "fp": 27,
+    "fn": 5,
+    "tn": 1
+  },
+  {
+    "name": "Mistral-7B",
+    "hf_id": "mistralai/Mistral-7B-v0.3",
+    "train_time_s": 799.5516083240509,
+    "best_val_loss": Infinity,
+    "threshold": 9.676301575670339,
+    "f1": 0.8920454545454546,
+    "precision": 0.8579234972677595,
+    "recall": 0.9289940828402367,
+    "tp": 157,
+    "fp": 26,
+    "fn": 12,
+    "tn": 2
+  }
+]

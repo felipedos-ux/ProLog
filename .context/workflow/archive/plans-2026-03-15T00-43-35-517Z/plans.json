@@ -1,0 +1,14 @@
+{
+  "active": [
+    {
+      "slug": "otimizacoes-sota",
+      "path": "plans/otimizacoes-sota.md",
+      "title": "Implementação Otimizações SOTA (Parser-Free)",
+      "summary": "Implementar as técnicas do estado da arte (Regex Mínimo, Threshold Adaptativo, Contrastive Learning) levantadas no Relatório de Implementação para evoluir as métricas do HDFS model (F1 de 0.86 para 0.95+).",
+      "linkedAt": "2026-03-15T00:39:37.202Z",
+      "status": "active"
+    }
+  ],
+  "completed": [],
+  "primary": "otimizacoes-sota"
+}

@@ -1,0 +1,61 @@
+{
+  "experiment_id": "A",
+  "name": "Baseline 5k",
+  "description": "Pipeline atual com subset 5k sess\u00f5es",
+  "config": {
+    "arch": {
+      "name": "default_256d",
+      "n_layer": 4,
+      "n_head": 4,
+      "n_embd": 256
+    },
+    "detection": "threshold",
+    "deduplicate": false,
+    "use_rl": false
+  },
+  "timestamp": "2026-03-14T16:24:49.088531",
+  "training": {
+    "phase": "pretraining",
+    "epochs_run": 30,
+    "best_val_loss": 0.056,
+    "train_time_seconds": 1325.3,
+    "param_count_M": 28.98,
+    "data_meta": {
+      "total_rows_loaded": 97743,
+      "unique_templates": 15,
+      "sessions_used": 5000,
+      "total_chunks": 24214
+    }
+  },
+  "metrics": {
+    "f1": 0.8539,
+    "precision": 0.9547,
+    "recall": 0.7723,
+    "accuracy": 0.7505,
+    "tp": 13004,
+    "fp": 617,
+    "fn": 3834,
+    "tn": 383,
+    "confusion_matrix": [
+      [
+        383,
+        617
+      ],
+      [
+        3834,
+        13004
+      ]
+    ],
+    "detection_method": "threshold",
+    "threshold": 0.1328,
+    "eval_time_seconds": 500.0,
+    "sessions_evaluated": 17838,
+    "lead_time": {
+      "anticipated_count": 10160,
+      "avg_minutes": 628.27,
+      "max_minutes": 2309.42,
+      "median_minutes": 398.89
+    }
+  },
+  "total_time_seconds": 1868.1
+}

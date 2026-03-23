@@ -1,0 +1,67 @@
+{
+  "experiment_id": "E",
+  "name": "RL PPO",
+  "description": "RL Finetuning com PPO + Top-K",
+  "config": {
+    "arch": {
+      "name": "default_256d",
+      "n_layer": 4,
+      "n_head": 4,
+      "n_embd": 256
+    },
+    "detection": "topk",
+    "deduplicate": false,
+    "use_rl": true
+  },
+  "timestamp": "2026-03-14T18:07:01.603202",
+  "training": {
+    "phase": "pretraining",
+    "epochs_run": 22,
+    "best_val_loss": 0.0557,
+    "train_time_seconds": 979.7,
+    "param_count_M": 28.98,
+    "data_meta": {
+      "total_rows_loaded": 97743,
+      "unique_templates": 15,
+      "sessions_used": 5000,
+      "total_chunks": 24214
+    }
+  },
+  "rl_finetuning": {
+    "k_top": 7,
+    "episodes_run": 1,
+    "rl_time_seconds": 1800.1,
+    "final_avg_reward": 0.9995
+  },
+  "metrics": {
+    "f1": 0.0628,
+    "precision": 1.0,
+    "recall": 0.0324,
+    "accuracy": 0.0867,
+    "tp": 546,
+    "fp": 0,
+    "fn": 16292,
+    "tn": 1000,
+    "confusion_matrix": [
+      [
+        1000,
+        0
+      ],
+      [
+        16292,
+        546
+      ]
+    ],
+    "detection_method": "topk",
+    "k": 7,
+    "eval_time_seconds": 1043.4,
+    "sessions_evaluated": 17838,
+    "lead_time": {
+      "anticipated_count": 541,
+      "avg_minutes": 512.04,
+      "max_minutes": 2277.25,
+      "median_minutes": 315.43
+    }
+  },
+  "total_time_seconds": 3877.0
+}

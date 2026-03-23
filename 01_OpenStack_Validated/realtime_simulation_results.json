@@ -1,0 +1,1562 @@
+{
+  "status": "finished",
+  "current_timestamp": "2018-07-03 18:11:35.236013",
+  "logs_processed": 90998,
+  "total_logs": 90998,
+  "sessions_active": 0,
+  "sessions_completed": 197,
+  "total_alerts": 197,
+  "tp": 169,
+  "fp": 28,
+  "fn": 0,
+  "tn": 0,
+  "precision": 0.8578680203045685,
+  "recall": 1.0,
+  "f1": 0.9234972677595629,
+  "accuracy": 0.8578680203045685,
+  "last_event": {
+    "test_id": 185,
+    "event_id": "3c37ed53",
+    "timestamp": "2018-07-03 18:11:35.236013",
+    "n_events": 554,
+    "status": "anomaly_cont"
+  },
+  "alerts": [
+    {
+      "test_id": "1",
+      "alert_time": "2018-06-26 03:22:00.433",
+      "step": 13,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "344",
+      "alert_time": "2018-06-26 03:35:41.755435",
+      "step": 86,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "381",
+      "alert_time": "2018-06-26 03:59:21.486",
+      "step": 67,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "30",
+      "alert_time": "2018-06-26 04:07:44.122",
+      "step": 63,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "384",
+      "alert_time": "2018-06-26 04:38:19.861103",
+      "step": 81,
+      "lead_time": -1.1158017166666667,
+      "is_tp": null
+    },
+    {
+      "test_id": "374",
+      "alert_time": "2018-06-26 05:15:47.832",
+      "step": 110,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "62",
+      "alert_time": "2018-06-26 05:23:34.477",
+      "step": 67,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "358",
+      "alert_time": "2018-06-26 05:31:43.527",
+      "step": 132,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "63",
+      "alert_time": "2018-06-26 06:00:59.295",
+      "step": 23,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "65",
+      "alert_time": "2018-06-26 06:43:22.730",
+      "step": 70,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "66",
+      "alert_time": "2018-06-26 07:23:06.690",
+      "step": 66,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "17",
+      "alert_time": "2018-06-26 07:33:09.981",
+      "step": 94,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "195",
+      "alert_time": "2018-06-26 07:53:04.676",
+      "step": 80,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "196",
+      "alert_time": "2018-06-26 08:24:35.852",
+      "step": 89,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "26",
+      "alert_time": "2018-06-26 08:59:46.936",
+      "step": 89,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "27",
+      "alert_time": "2018-06-26 09:40:46.145",
+      "step": 86,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "349",
+      "alert_time": "2018-06-26 10:29:35.691",
+      "step": 90,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "71",
+      "alert_time": "2018-06-26 11:36:24.719",
+      "step": 50,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "74",
+      "alert_time": "2018-06-26 13:09:53.671",
+      "step": 152,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "383",
+      "alert_time": "2018-06-26 13:50:59.198",
+      "step": 88,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "191",
+      "alert_time": "2018-06-26 13:55:31.214",
+      "step": 86,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "385",
+      "alert_time": "2018-06-26 14:23:51.582",
+      "step": 136,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "76",
+      "alert_time": "2018-06-26 15:13:39.893",
+      "step": 91,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "194",
+      "alert_time": "2018-06-26 17:37:02.680",
+      "step": 60,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "78",
+      "alert_time": "2018-06-26 17:47:35.769",
+      "step": 134,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "4",
+      "alert_time": "2018-06-27 00:35:39.615",
+      "step": 104,
+      "lead_time": -3.333333333333336e-05,
+      "is_tp": null
+    },
+    {
+      "test_id": "395",
+      "alert_time": "2018-06-27 00:38:04.835788",
+      "step": 139,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "402",
+      "alert_time": "2018-06-27 01:16:26.999",
+      "step": 59,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "409",
+      "alert_time": "2018-06-27 01:46:59.237",
+      "step": 89,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "352",
+      "alert_time": "2018-06-27 02:00:11.480",
+      "step": 125,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "433",
+      "alert_time": "2018-06-27 02:22:26.920",
+      "step": 74,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "432",
+      "alert_time": "2018-06-27 02:22:58.756",
+      "step": 13,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "410",
+      "alert_time": "2018-06-27 02:25:07.299",
+      "step": 83,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "359",
+      "alert_time": "2018-06-27 02:38:31.205",
+      "step": 72,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "183",
+      "alert_time": "2018-06-27 02:53:04.171",
+      "step": 13,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "367",
+      "alert_time": "2018-06-27 03:22:48.894",
+      "step": 143,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "390",
+      "alert_time": "2018-06-27 03:31:25.752",
+      "step": 53,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "6",
+      "alert_time": "2018-06-27 03:35:47.225",
+      "step": 79,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "73",
+      "alert_time": "2018-06-27 03:40:36.133",
+      "step": 26,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "400",
+      "alert_time": "2018-06-27 03:50:22.758964",
+      "step": 82,
+      "lead_time": -1.2726994,
+      "is_tp": null
+    },
+    {
+      "test_id": "202",
+      "alert_time": "2018-06-27 03:56:28.849",
+      "step": 17,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "377",
+      "alert_time": "2018-06-27 03:59:59.336",
+      "step": 81,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "382",
+      "alert_time": "2018-06-27 04:45:23.846941",
+      "step": 156,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "423",
+      "alert_time": "2018-06-27 05:05:11.426",
+      "step": 63,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "401",
+      "alert_time": "2018-06-27 05:06:08.063",
+      "step": 4,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "388",
+      "alert_time": "2018-06-27 05:24:48.033",
+      "step": 69,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "93",
+      "alert_time": "2018-06-27 06:17:47.949",
+      "step": 62,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "424",
+      "alert_time": "2018-06-27 06:24:40.564",
+      "step": 62,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "12",
+      "alert_time": "2018-06-27 06:43:27.305",
+      "step": 88,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "393",
+      "alert_time": "2018-06-27 06:55:53.398",
+      "step": 23,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "435",
+      "alert_time": "2018-06-27 08:15:36.808",
+      "step": 135,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "404",
+      "alert_time": "2018-06-27 08:23:44.918",
+      "step": 166,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "405",
+      "alert_time": "2018-06-27 08:54:17.382",
+      "step": 78,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "436",
+      "alert_time": "2018-06-27 09:14:58.673",
+      "step": 69,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "136",
+      "alert_time": "2018-06-27 09:25:23.310",
+      "step": 45,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "396",
+      "alert_time": "2018-06-27 09:35:46.546",
+      "step": 124,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "3",
+      "alert_time": "2018-06-27 09:38:06.671",
+      "step": 73,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "427",
+      "alert_time": "2018-06-27 10:16:47.673",
+      "step": 72,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "437",
+      "alert_time": "2018-06-27 10:24:14.237",
+      "step": 63,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "397",
+      "alert_time": "2018-06-27 10:42:58.753",
+      "step": 7,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "429",
+      "alert_time": "2018-06-27 10:56:30.985",
+      "step": 66,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "438",
+      "alert_time": "2018-06-27 11:30:50.730",
+      "step": 68,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "430",
+      "alert_time": "2018-06-27 11:36:34.009",
+      "step": 69,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "193",
+      "alert_time": "2018-06-27 11:41:10.347",
+      "step": 79,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "408",
+      "alert_time": "2018-06-27 12:47:21.597",
+      "step": 37,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "431",
+      "alert_time": "2018-06-27 12:56:26.356",
+      "step": 78,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "117",
+      "alert_time": "2018-06-27 21:22:40.766",
+      "step": 71,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "31",
+      "alert_time": "2018-06-27 21:23:10.951",
+      "step": 81,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "89",
+      "alert_time": "2018-06-27 21:23:48.164042",
+      "step": 108,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "25",
+      "alert_time": "2018-06-27 21:58:29.413064",
+      "step": 139,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "29",
+      "alert_time": "2018-06-27 22:00:31.943",
+      "step": 43,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "105",
+      "alert_time": "2018-06-27 22:00:43.118",
+      "step": 69,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "92",
+      "alert_time": "2018-06-27 22:08:41.017803",
+      "step": 107,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "18",
+      "alert_time": "2018-06-27 22:36:15.356",
+      "step": 63,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "19",
+      "alert_time": "2018-06-27 23:11:50.134",
+      "step": 68,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "119",
+      "alert_time": "2018-06-27 23:17:03.999",
+      "step": 79,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "107",
+      "alert_time": "2018-06-27 23:26:20.726",
+      "step": 79,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "94",
+      "alert_time": "2018-06-27 23:32:42.447282",
+      "step": 109,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "120",
+      "alert_time": "2018-06-27 23:56:54.637",
+      "step": 177,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "57",
+      "alert_time": "2018-06-28 00:22:12.788",
+      "step": 107,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "20",
+      "alert_time": "2018-06-28 00:22:44.168",
+      "step": 77,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "121",
+      "alert_time": "2018-06-28 00:23:28.075",
+      "step": 71,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "122",
+      "alert_time": "2018-06-28 00:57:45.925",
+      "step": 43,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "83",
+      "alert_time": "2018-06-28 01:20:54.556",
+      "step": 94,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "21",
+      "alert_time": "2018-06-28 01:32:00.228",
+      "step": 82,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "123",
+      "alert_time": "2018-06-28 01:34:14.819",
+      "step": 66,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "124",
+      "alert_time": "2018-06-28 02:09:09.374",
+      "step": 79,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "127",
+      "alert_time": "2018-06-28 03:58:51.896",
+      "step": 3,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "59",
+      "alert_time": "2018-06-28 05:00:31.139624",
+      "step": 165,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "23",
+      "alert_time": "2018-06-28 05:40:29.563",
+      "step": 63,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "88",
+      "alert_time": "2018-06-28 06:06:10.179",
+      "step": 78,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "24",
+      "alert_time": "2018-06-28 06:14:58.896",
+      "step": 69,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "103",
+      "alert_time": "2018-06-28 06:46:00.790",
+      "step": 58,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "47",
+      "alert_time": "2018-06-28 07:00:09.920",
+      "step": 45,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "81",
+      "alert_time": "2018-06-28 08:19:04.493",
+      "step": 89,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "52",
+      "alert_time": "2018-06-28 09:34:31.304",
+      "step": 81,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "90",
+      "alert_time": "2018-06-28 13:50:08.753",
+      "step": 136,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "91",
+      "alert_time": "2018-06-28 14:16:57.677",
+      "step": 27,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "176",
+      "alert_time": "2018-06-28 15:31:27.226",
+      "step": 76,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "155",
+      "alert_time": "2018-06-28 15:31:41.278",
+      "step": 97,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "138",
+      "alert_time": "2018-06-28 16:03:07.516",
+      "step": 74,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "150",
+      "alert_time": "2018-06-28 16:10:51.863",
+      "step": 90,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "177",
+      "alert_time": "2018-06-28 16:17:53.802",
+      "step": 96,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "178",
+      "alert_time": "2018-06-28 17:03:38.831",
+      "step": 76,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "179",
+      "alert_time": "2018-06-28 17:48:24.831",
+      "step": 41,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "161",
+      "alert_time": "2018-06-28 18:14:20.195",
+      "step": 128,
+      "lead_time": -1.666666666666668e-05,
+      "is_tp": null
+    },
+    {
+      "test_id": "209",
+      "alert_time": "2018-06-28 18:26:12.514066",
+      "step": 87,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "131",
+      "alert_time": "2018-06-28 19:52:16.152",
+      "step": 77,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "226",
+      "alert_time": "2018-06-28 20:07:41.818857",
+      "step": 168,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "132",
+      "alert_time": "2018-06-28 20:24:07.994",
+      "step": 16,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "152",
+      "alert_time": "2018-06-28 20:54:34.772",
+      "step": 64,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "172",
+      "alert_time": "2018-06-28 21:18:45.084919",
+      "step": 89,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "133",
+      "alert_time": "2018-06-28 21:38:27.858904",
+      "step": 142,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "173",
+      "alert_time": "2018-06-28 21:48:46.210663",
+      "step": 79,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "153",
+      "alert_time": "2018-06-28 22:05:31.141",
+      "step": 66,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "154",
+      "alert_time": "2018-06-28 23:16:03.626",
+      "step": 75,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "156",
+      "alert_time": "2018-06-28 23:43:31.690",
+      "step": 86,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "157",
+      "alert_time": "2018-06-29 00:11:52.414",
+      "step": 73,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "235",
+      "alert_time": "2018-06-29 00:41:41.049",
+      "step": 189,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "148",
+      "alert_time": "2018-06-29 02:10:28.586",
+      "step": 66,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "142",
+      "alert_time": "2018-06-29 02:27:59.791",
+      "step": 74,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "143",
+      "alert_time": "2018-06-29 03:07:28.566",
+      "step": 85,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "240",
+      "alert_time": "2018-06-29 04:24:22.502",
+      "step": 78,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "203",
+      "alert_time": "2018-06-29 06:13:23.058",
+      "step": 73,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "350",
+      "alert_time": "2018-06-30 00:25:04.956698",
+      "step": 159,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "274",
+      "alert_time": "2018-06-30 00:58:51.873",
+      "step": 95,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "301",
+      "alert_time": "2018-06-30 01:00:13.206",
+      "step": 83,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "266",
+      "alert_time": "2018-06-30 01:41:21.202",
+      "step": 67,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "354",
+      "alert_time": "2018-06-30 01:47:27.403",
+      "step": 176,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "244",
+      "alert_time": "2018-06-30 02:00:23.237",
+      "step": 12,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "267",
+      "alert_time": "2018-06-30 02:17:25.971",
+      "step": 76,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "355",
+      "alert_time": "2018-06-30 02:28:48.359",
+      "step": 159,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "339",
+      "alert_time": "2018-06-30 02:44:32.643",
+      "step": 47,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "269",
+      "alert_time": "2018-06-30 02:52:26.269",
+      "step": 64,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "281",
+      "alert_time": "2018-06-30 03:00:57.587",
+      "step": 66,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "319",
+      "alert_time": "2018-06-30 03:18:58.206",
+      "step": 89,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "306",
+      "alert_time": "2018-06-30 03:19:48.741",
+      "step": 134,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "340",
+      "alert_time": "2018-06-30 03:22:26.148",
+      "step": 146,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "270",
+      "alert_time": "2018-06-30 03:27:24.999",
+      "step": 74,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "308",
+      "alert_time": "2018-06-30 04:27:09.191",
+      "step": 71,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "272",
+      "alert_time": "2018-06-30 04:42:02.861",
+      "step": 78,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "309",
+      "alert_time": "2018-06-30 05:00:30.137",
+      "step": 51,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "310",
+      "alert_time": "2018-06-30 05:42:35.014",
+      "step": 73,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "285",
+      "alert_time": "2018-06-30 05:48:38.001298",
+      "step": 159,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "263",
+      "alert_time": "2018-06-30 05:51:49.939",
+      "step": 71,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "321",
+      "alert_time": "2018-06-30 06:23:55.070",
+      "step": 146,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "311",
+      "alert_time": "2018-06-30 06:25:09.818",
+      "step": 70,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "245",
+      "alert_time": "2018-06-30 06:56:19.131",
+      "step": 64,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "262",
+      "alert_time": "2018-06-30 07:25:45.813",
+      "step": 75,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "327",
+      "alert_time": "2018-06-30 07:30:16.277",
+      "step": 98,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "314",
+      "alert_time": "2018-06-30 08:00:40.220",
+      "step": 13,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "291",
+      "alert_time": "2018-06-30 08:57:50.782",
+      "step": 87,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "246",
+      "alert_time": "2018-06-30 09:09:24.037",
+      "step": 70,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "292",
+      "alert_time": "2018-06-30 09:36:43.330630",
+      "step": 163,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "264",
+      "alert_time": "2018-06-30 09:46:55.941",
+      "step": 71,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "331",
+      "alert_time": "2018-06-30 10:00:50.639",
+      "step": 37,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "318",
+      "alert_time": "2018-06-30 10:06:48.786",
+      "step": 90,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "332",
+      "alert_time": "2018-06-30 10:45:40.803",
+      "step": 145,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "333",
+      "alert_time": "2018-06-30 11:28:12.248329",
+      "step": 170,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "335",
+      "alert_time": "2018-06-30 12:53:56.384",
+      "step": 159,
+      "lead_time": -0.10018333333333333,
+      "is_tp": null
+    },
+    {
+      "test_id": "299",
+      "alert_time": "2018-06-30 14:45:26.981",
+      "step": 151,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "32",
+      "alert_time": "2018-07-02 17:46:31.301",
+      "step": 9,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "116",
+      "alert_time": "2018-07-02 18:31:35.998",
+      "step": 98,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "418",
+      "alert_time": "2018-07-02 19:11:28.366630",
+      "step": 78,
+      "lead_time": -1.0486605,
+      "is_tp": null
+    },
+    {
+      "test_id": "249",
+      "alert_time": "2018-07-02 19:36:18.801",
+      "step": 69,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "419",
+      "alert_time": "2018-07-02 19:50:15.652",
+      "step": 190,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "110",
+      "alert_time": "2018-07-02 19:54:26.049",
+      "step": 38,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "420",
+      "alert_time": "2018-07-02 20:23:04.206",
+      "step": 14,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "111",
+      "alert_time": "2018-07-02 20:27:57.729",
+      "step": 79,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "36",
+      "alert_time": "2018-07-02 20:27:58.820",
+      "step": 63,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "251",
+      "alert_time": "2018-07-02 20:50:49.660",
+      "step": 70,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "114",
+      "alert_time": "2018-07-02 20:58:30.336",
+      "step": 72,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "412",
+      "alert_time": "2018-07-02 21:00:24.057",
+      "step": 43,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "37",
+      "alert_time": "2018-07-02 21:12:48.516",
+      "step": 131,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "360",
+      "alert_time": "2018-07-02 21:14:27.105",
+      "step": 47,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "252",
+      "alert_time": "2018-07-02 21:29:27.328",
+      "step": 71,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "413",
+      "alert_time": "2018-07-02 21:40:05.718",
+      "step": 58,
+      "lead_time": -1.44145,
+      "is_tp": null
+    },
+    {
+      "test_id": "38",
+      "alert_time": "2018-07-02 21:56:09.326",
+      "step": 136,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "115",
+      "alert_time": "2018-07-02 22:07:17.097",
+      "step": 72,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "40",
+      "alert_time": "2018-07-02 22:39:39.195",
+      "step": 141,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "41",
+      "alert_time": "2018-07-02 23:20:01.511064",
+      "step": 140,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "42",
+      "alert_time": "2018-07-03 00:00:31.320",
+      "step": 73,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "43",
+      "alert_time": "2018-07-03 00:43:27.396",
+      "step": 139,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "414",
+      "alert_time": "2018-07-03 01:10:16.689",
+      "step": 64,
+      "lead_time": 0.0,
+      "is_tp": null
+    },
+    {
+      "test_id": "33",
+      "alert_time": "2018-07-03 01:24:11.789",
+      "step": 140,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "34",
+      "alert_time": "2018-07-03 02:00:55.403",
+      "step": 93,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "416",
+      "alert_time": "2018-07-03 03:18:32.394",
+      "step": 4,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "417",
+      "alert_time": "2018-07-03 03:57:38.303481",
+      "step": 81,
+      "lead_time": -1.1192080166666665,
+      "is_tp": null
+    },
+    {
+      "test_id": "366",
+      "alert_time": "2018-07-03 13:25:12.578",
+      "step": 10,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "186",
+      "alert_time": "2018-07-03 13:27:15.051",
+      "step": 52,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "368",
+      "alert_time": "2018-07-03 13:30:58.768520",
+      "step": 142,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "362",
+      "alert_time": "2018-07-03 14:48:59.087",
+      "step": 121,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "189",
+      "alert_time": "2018-07-03 15:22:21.484",
+      "step": 75,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "180",
+      "alert_time": "2018-07-03 15:57:36.474",
+      "step": 119,
+      "lead_time": -0.27465,
+      "is_tp": null
+    },
+    {
+      "test_id": "372",
+      "alert_time": "2018-07-03 16:13:44.336",
+      "step": 142,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "365",
+      "alert_time": "2018-07-03 16:45:51.805",
+      "step": 84,
+      "lead_time": null,
+      "is_tp": null
+    },
+    {
+      "test_id": "185",
+      "alert_time": "2018-07-03 17:56:56.289301",
+      "step": 140,
+      "lead_time": 0.0,
+      "is_tp": null
+    }
+  ],
+  "log_feed": [
+    {
+      "t": "18:10:59.530312",
+      "sid": "185",
+      "e": "6bad77c0",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:07.720",
+      "sid": "185",
+      "e": "c895ebf6",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:07.850488",
+      "sid": "185",
+      "e": "6bad77c0",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:07.857471",
+      "sid": "185",
+      "e": "f83cb39a",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:07.867736",
+      "sid": "185",
+      "e": "28dd7d1f",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:14.376",
+      "sid": "185",
+      "e": "b32372ee",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:14.744544",
+      "sid": "185",
+      "e": "28dd7d1f",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:14.746624",
+      "sid": "185",
+      "e": "bf5b166b",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:14.753730",
+      "sid": "185",
+      "e": "427b131c",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:18.872",
+      "sid": "185",
+      "e": "dd41f500",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:19.540",
+      "sid": "185",
+      "e": "e1b327f0",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:19.541",
+      "sid": "185",
+      "e": "8c9bc2e3",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:19.542",
+      "sid": "185",
+      "e": "068b89c2",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:21.003",
+      "sid": "185",
+      "e": "b32372ee",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:21.307777",
+      "sid": "185",
+      "e": "427b131c",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:21.310817",
+      "sid": "185",
+      "e": "3d94c8f8",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:21.317061",
+      "sid": "185",
+      "e": "976f424e",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:27.704",
+      "sid": "185",
+      "e": "b740c466",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:28.130747",
+      "sid": "185",
+      "e": "976f424e",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:28.132593",
+      "sid": "185",
+      "e": "32c0c23a",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:28.139799",
+      "sid": "185",
+      "e": "6d00d604",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "03 18:11:34.891",
+      "sid": "185",
+      "e": "b32372ee",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:35.227858",
+      "sid": "185",
+      "e": "6d00d604",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:35.230671",
+      "sid": "185",
+      "e": "7b174bb9",
+      "s": "anomaly_cont"
+    },
+    {
+      "t": "18:11:35.236013",
+      "sid": "185",
+      "e": "3c37ed53",
+      "s": "anomaly_cont"
+    }
+  ],
+  "lead_time_mean": null,
+  "lead_time_pct": 0.0,
+  "elapsed": 110.72551989555359,
+  "speed_mode": "turbo",
+  "finished": true
+}

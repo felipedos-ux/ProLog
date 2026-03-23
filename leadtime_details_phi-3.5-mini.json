@@ -1,0 +1,1972 @@
+[
+  {
+    "test_id": 292,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.15368938446045,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 408,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.878463745117188,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 71
+  },
+  {
+    "test_id": 143,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.7327880859375,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 284
+  },
+  {
+    "test_id": 417,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 7.975397109985352,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 64
+  },
+  {
+    "test_id": 402,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.230561256408691,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 150
+  },
+  {
+    "test_id": 155,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.019489288330078,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 109
+  },
+  {
+    "test_id": 274,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.133164405822754,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 131
+  },
+  {
+    "test_id": 27,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.857915878295898,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 197
+  },
+  {
+    "test_id": 420,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.574203491210938,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 12
+  },
+  {
+    "test_id": 30,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 447
+  },
+  {
+    "test_id": 423,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.152316093444824,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 61
+  },
+  {
+    "test_id": 414,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.675905227661133,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 62
+  },
+  {
+    "test_id": 21,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.115972518920898,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 381
+  },
+  {
+    "test_id": 161,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.098262786865234,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 125
+  },
+  {
+    "test_id": 405,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.189214706420898,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 76
+  },
+  {
+    "test_id": 24,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.789332389831543,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 393
+  },
+  {
+    "test_id": 152,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.884683609008789,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 79
+  },
+  {
+    "test_id": 3,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.412972450256348,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 95
+  },
+  {
+    "test_id": 6,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.045848846435547,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 17
+  },
+  {
+    "test_id": 12,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.707316398620605,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 387
+  },
+  {
+    "test_id": 396,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.957944869995117,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 18,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 382
+  },
+  {
+    "test_id": 173,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.282384872436523,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 77
+  },
+  {
+    "test_id": 429,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.129833221435547,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 64
+  },
+  {
+    "test_id": 191,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.760998725891113,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 89
+  },
+  {
+    "test_id": 36,
+    "label": 1,
+    "predicted": 0,
+    "ce_loss": 4.262887477874756,
+    "first_anomaly_step": -1,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 176,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.041492462158203,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 111
+  },
+  {
+    "test_id": 185,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.188597679138184,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 138
+  },
+  {
+    "test_id": 310,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.26352596282959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 111
+  },
+  {
+    "test_id": 63,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.15368938446045,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 70
+  },
+  {
+    "test_id": 438,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.241706848144531,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 68
+  },
+  {
+    "test_id": 57,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.521843910217285,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 109
+  },
+  {
+    "test_id": 194,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.216158866882324,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 81
+  },
+  {
+    "test_id": 42,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.019489288330078,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 148
+  },
+  {
+    "test_id": 301,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.26352596282959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 84
+  },
+  {
+    "test_id": 33,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 424
+  },
+  {
+    "test_id": 435,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.301165580749512,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 142
+  },
+  {
+    "test_id": 319,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.708039283752441,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 87
+  },
+  {
+    "test_id": 432,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.913972854614258,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 11
+  },
+  {
+    "test_id": 179,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.26352596282959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 92
+  },
+  {
+    "test_id": 203,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.41726303100586,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 110
+  },
+  {
+    "test_id": 349,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.51213264465332,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 88
+  },
+  {
+    "test_id": 78,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.126334190368652,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 142
+  },
+  {
+    "test_id": 93,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.381178855895996,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 60
+  },
+  {
+    "test_id": 331,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.378952026367188,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 160
+  },
+  {
+    "test_id": 81,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.257773399353027,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 90
+  },
+  {
+    "test_id": 90,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.300676345825195,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 144
+  },
+  {
+    "test_id": 209,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.310985565185547,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 85
+  },
+  {
+    "test_id": 358,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.99518871307373,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 160
+  },
+  {
+    "test_id": 355,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.07176685333252,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 157
+  },
+  {
+    "test_id": 352,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.410358428955078,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 140
+  },
+  {
+    "test_id": 66,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.999987602233887,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 64
+  },
+  {
+    "test_id": 340,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.41726303100586,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 168
+  },
+  {
+    "test_id": 117,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.153519630432129,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 69
+  },
+  {
+    "test_id": 114,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.806180000305176,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 153
+  },
+  {
+    "test_id": 105,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.41726303100586,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 245,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.791913032531738,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 62
+  },
+  {
+    "test_id": 120,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.153519630432129,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 329
+  },
+  {
+    "test_id": 251,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.153146743774414,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 68
+  },
+  {
+    "test_id": 388,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 7.707973003387451,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 143
+  },
+  {
+    "test_id": 367,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 7.821816921234131,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 141
+  },
+  {
+    "test_id": 123,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.914863586425781,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 64
+  },
+  {
+    "test_id": 111,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.529685020446777,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 151
+  },
+  {
+    "test_id": 382,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.261652946472168,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 162
+  },
+  {
+    "test_id": 385,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.441158294677734,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 144
+  },
+  {
+    "test_id": 1,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.957944869995117,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 343
+  },
+  {
+    "test_id": 25,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 150,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.518529891967773,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 105
+  },
+  {
+    "test_id": 412,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.700831413269043,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 31,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.29124641418457,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 548
+  },
+  {
+    "test_id": 400,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.282384872436523,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 65
+  },
+  {
+    "test_id": 409,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.243083000183105,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 87
+  },
+  {
+    "test_id": 269,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.291996002197266,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 82
+  },
+  {
+    "test_id": 132,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.840755462646484,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 14
+  },
+  {
+    "test_id": 153,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.864904403686523,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 80
+  },
+  {
+    "test_id": 263,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.188597679138184,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 69
+  },
+  {
+    "test_id": 266,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.220945358276367,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 81
+  },
+  {
+    "test_id": 19,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.115972518920898,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 378
+  },
+  {
+    "test_id": 397,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.813858985900879,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 5
+  },
+  {
+    "test_id": 272,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.95252513885498,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 103
+  },
+  {
+    "test_id": 4,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 398
+  },
+  {
+    "test_id": 418,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.66152286529541,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 64
+  },
+  {
+    "test_id": 424,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 60
+  },
+  {
+    "test_id": 281,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.15368938446045,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 152
+  },
+  {
+    "test_id": 138,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.896393775939941,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 156,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.07792854309082,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 138
+  },
+  {
+    "test_id": 311,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.168566703796387,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 68
+  },
+  {
+    "test_id": 52,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.69174861907959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 98
+  },
+  {
+    "test_id": 427,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.209712982177734,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 70
+  },
+  {
+    "test_id": 299,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.925305366516113,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 172
+  },
+  {
+    "test_id": 308,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.26352596282959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 69
+  },
+  {
+    "test_id": 183,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.992866516113281,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 144
+  },
+  {
+    "test_id": 37,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.241706848144531,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 151
+  },
+  {
+    "test_id": 195,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.400120735168457,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 141
+  },
+  {
+    "test_id": 186,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.529685020446777,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 175
+  },
+  {
+    "test_id": 180,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.182757377624512,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 106
+  },
+  {
+    "test_id": 40,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.596321105957031,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 139
+  },
+  {
+    "test_id": 314,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.238785743713379,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 190
+  },
+  {
+    "test_id": 43,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.180315017700195,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 157
+  },
+  {
+    "test_id": 436,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.220945358276367,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 67
+  },
+  {
+    "test_id": 433,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.099498748779297,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 34,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 434
+  },
+  {
+    "test_id": 430,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.142948150634766,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 67
+  },
+  {
+    "test_id": 189,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.265456199645996,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 278
+  },
+  {
+    "test_id": 177,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.265437126159668,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 152
+  },
+  {
+    "test_id": 335,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.19980525970459,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 154
+  },
+  {
+    "test_id": 344,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.97179126739502,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 84
+  },
+  {
+    "test_id": 88,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.257773399353027,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 155
+  },
+  {
+    "test_id": 359,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.906537055969238,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 163
+  },
+  {
+    "test_id": 94,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.080240249633789,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 350,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.073921203613281,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 165
+  },
+  {
+    "test_id": 332,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.41726303100586,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 163
+  },
+  {
+    "test_id": 73,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.769174575805664,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 24
+  },
+  {
+    "test_id": 91,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.079740524291992,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 143
+  },
+  {
+    "test_id": 76,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.9138822555542,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 89
+  },
+  {
+    "test_id": 365,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 7.826735496520996,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 383,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.460075378417969,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 149
+  },
+  {
+    "test_id": 249,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.26352596282959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 67
+  },
+  {
+    "test_id": 362,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.828927040100098,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 124,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.558914184570312,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 77
+  },
+  {
+    "test_id": 115,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.45921516418457,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 70
+  },
+  {
+    "test_id": 252,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.0866117477417,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 69
+  },
+  {
+    "test_id": 368,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.864904403686523,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 121,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.07176685333252,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 69
+  },
+  {
+    "test_id": 246,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.104891777038574,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 68
+  },
+  {
+    "test_id": 377,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.928417205810547,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 158
+  },
+  {
+    "test_id": 127,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.753549575805664,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 374,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.103036880493164,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 240,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.103545188903809,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 76
+  },
+  {
+    "test_id": 103,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.469897270202637,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 110
+  },
+  {
+    "test_id": 264,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.169439315795898,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 88
+  },
+  {
+    "test_id": 157,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.943986892700195,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 139
+  },
+  {
+    "test_id": 270,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.343658447265625,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 75
+  },
+  {
+    "test_id": 26,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 395,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.884683609008789,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 145
+  },
+  {
+    "test_id": 291,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.155793190002441,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 85
+  },
+  {
+    "test_id": 32,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.976912498474121,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 5
+  },
+  {
+    "test_id": 285,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.15368938446045,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 142,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.115972518920898,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 183
+  },
+  {
+    "test_id": 133,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.00864315032959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 29,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 402
+  },
+  {
+    "test_id": 419,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.864904403686523,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 416,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.354982376098633,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 17,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.857915878295898,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 456
+  },
+  {
+    "test_id": 136,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.440387725830078,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 140
+  },
+  {
+    "test_id": 20,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.835417747497559,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 380
+  },
+  {
+    "test_id": 154,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.698454856872559,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 73
+  },
+  {
+    "test_id": 401,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.526092529296875,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 2
+  },
+  {
+    "test_id": 23,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851350784301758,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 374
+  },
+  {
+    "test_id": 404,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.232321739196777,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 148,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.851532936096191,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 84
+  },
+  {
+    "test_id": 267,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.859994888305664,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 96
+  },
+  {
+    "test_id": 413,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.469215393066406,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 27
+  },
+  {
+    "test_id": 410,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 7.93502140045166,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 82
+  },
+  {
+    "test_id": 65,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.15368938446045,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 68
+  },
+  {
+    "test_id": 196,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.181939125061035,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 142
+  },
+  {
+    "test_id": 59,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 7.8092498779296875,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 177
+  },
+  {
+    "test_id": 41,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.301165580749512,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 146
+  },
+  {
+    "test_id": 47,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.935038566589355,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 166
+  },
+  {
+    "test_id": 62,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.15368938446045,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 65
+  },
+  {
+    "test_id": 327,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.381178855895996,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 182
+  },
+  {
+    "test_id": 172,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 7.821437835693359,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 87
+  },
+  {
+    "test_id": 178,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.904669761657715,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 110
+  },
+  {
+    "test_id": 321,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.97179126739502,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 170
+  },
+  {
+    "test_id": 193,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.051078796386719,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 134
+  },
+  {
+    "test_id": 38,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.181567192077637,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 153
+  },
+  {
+    "test_id": 318,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.484613418579102,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 306,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.265437126159668,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 309,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.26352596282959,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 114
+  },
+  {
+    "test_id": 431,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.129833221435547,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 76
+  },
+  {
+    "test_id": 437,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.262907028198242,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 61
+  },
+  {
+    "test_id": 226,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.038782119750977,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 354,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.153519630432129,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 174
+  },
+  {
+    "test_id": 202,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.31013298034668,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 144
+  },
+  {
+    "test_id": 74,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.826160430908203,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 92,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.026604652404785,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 152
+  },
+  {
+    "test_id": 333,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.241168975830078,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 176
+  },
+  {
+    "test_id": 89,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.708039283752441,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 150
+  },
+  {
+    "test_id": 83,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.04887866973877,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 339,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.141797065734863,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 89
+  },
+  {
+    "test_id": 71,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.56061840057373,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 360,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.266560554504395,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 153
+  },
+  {
+    "test_id": 384,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.378952026367188,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 65
+  },
+  {
+    "test_id": 107,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.06273078918457,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 77
+  },
+  {
+    "test_id": 110,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.45921516418457,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 153
+  },
+  {
+    "test_id": 262,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.700831413269043,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 76
+  },
+  {
+    "test_id": 244,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.789332389831543,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 83
+  },
+  {
+    "test_id": 131,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 7.631141185760498,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 75
+  },
+  {
+    "test_id": 122,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.979084968566895,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 74
+  },
+  {
+    "test_id": 235,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 9.11120891571045,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 366,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 8.93702220916748,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 116,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.45921516418457,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 165
+  },
+  {
+    "test_id": 393,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.733710289001465,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 21
+  },
+  {
+    "test_id": 372,
+    "label": 0,
+    "predicted": 1,
+    "ce_loss": 7.95406436920166,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": null
+  },
+  {
+    "test_id": 390,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.529685020446777,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 290
+  },
+  {
+    "test_id": 119,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 8.884746551513672,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 78
+  },
+  {
+    "test_id": 381,
+    "label": 1,
+    "predicted": 1,
+    "ce_loss": 9.261672019958496,
+    "first_anomaly_step": 2,
+    "lead_time_seconds": null,
+    "lead_time_minutes": null,
+    "alert_step_before_error": 65
+  }
+]

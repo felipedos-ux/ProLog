@@ -1,0 +1,67 @@
+{
+  "experiment_id": "F",
+  "name": "Dedupe + Threshold (Final)",
+  "description": "Combina\u00e7\u00e3o: Deduplica\u00e7\u00e3o + Threshold GPT-2. Metodologia Validada.",
+  "config": {
+    "arch": {
+      "name": "default_256d",
+      "n_layer": 4,
+      "n_head": 4,
+      "n_embd": 256
+    },
+    "detection": "threshold",
+    "deduplicate": true,
+    "use_rl": false
+  },
+  "timestamp": "2026-03-14T20:03:49.635485",
+  "training": {
+    "phase": "pretraining",
+    "epochs_run": 22,
+    "best_val_loss": 0.0574,
+    "train_time_seconds": 720.8,
+    "param_count_M": 28.98,
+    "data_meta": {
+      "total_rows_loaded": 97743,
+      "deduplication": {
+        "original_sessions": 5000,
+        "unique_sessions": 3479,
+        "removed": 1521,
+        "reduction_pct": 30.4
+      },
+      "unique_templates": 15,
+      "sessions_used": 3479,
+      "total_chunks": 18061
+    }
+  },
+  "metrics": {
+    "f1": 0.8584,
+    "precision": 0.9567,
+    "recall": 0.7785,
+    "accuracy": 0.7577,
+    "tp": 13108,
+    "fp": 593,
+    "fn": 3730,
+    "tn": 407,
+    "confusion_matrix": [
+      [
+        407,
+        593
+      ],
+      [
+        3730,
+        13108
+      ]
+    ],
+    "detection_method": "threshold",
+    "threshold": 0.1354,
+    "eval_time_seconds": 551.0,
+    "sessions_evaluated": 17838,
+    "lead_time": {
+      "anticipated_count": 10133,
+      "avg_minutes": 604.85,
+      "max_minutes": 2309.42,
+      "median_minutes": 376.6
+    }
+  },
+  "total_time_seconds": 1312.2
+}

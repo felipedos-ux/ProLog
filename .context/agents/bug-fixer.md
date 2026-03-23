@@ -4,7 +4,7 @@ name: Bug Fixer
 description: Analyze bug reports and error messages
 agentType: bug-fixer
 phases: [E, V]
-generated: 2026-02-07
+generated: 2026-03-14
 status: unfilled
 scaffoldVersion: "2.0.0"
 ---

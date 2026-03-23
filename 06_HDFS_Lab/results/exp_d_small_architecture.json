@@ -1,0 +1,61 @@
+{
+  "experiment_id": "D",
+  "name": "Small Architecture",
+  "description": "Arquitetura LogGPT (60d/6L/6H) + Top-K",
+  "config": {
+    "arch": {
+      "name": "loggpt_60d",
+      "n_layer": 6,
+      "n_head": 6,
+      "n_embd": 60
+    },
+    "detection": "topk",
+    "deduplicate": false,
+    "use_rl": false
+  },
+  "timestamp": "2026-03-14T17:27:05.045894",
+  "training": {
+    "phase": "pretraining",
+    "epochs_run": 30,
+    "best_val_loss": 0.0571,
+    "train_time_seconds": 949.5,
+    "param_count_M": 6.31,
+    "data_meta": {
+      "total_rows_loaded": 97743,
+      "unique_templates": 15,
+      "sessions_used": 5000,
+      "total_chunks": 24213
+    }
+  },
+  "metrics": {
+    "f1": 0.0857,
+    "precision": 1.0,
+    "recall": 0.0448,
+    "accuracy": 0.0983,
+    "tp": 754,
+    "fp": 0,
+    "fn": 16084,
+    "tn": 1000,
+    "confusion_matrix": [
+      [
+        1000,
+        0
+      ],
+      [
+        16084,
+        754
+      ]
+    ],
+    "detection_method": "topk",
+    "k": 7,
+    "eval_time_seconds": 1419.9,
+    "sessions_evaluated": 17838,
+    "lead_time": {
+      "anticipated_count": 550,
+      "avg_minutes": 512.25,
+      "max_minutes": 2277.25,
+      "median_minutes": 307.91
+    }
+  },
+  "total_time_seconds": 2396.6
+}
